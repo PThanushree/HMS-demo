@@ -1,4 +1,4 @@
-
+/* 
 :root {
   --primary: #3a0ca3;
   --primary-light: #4361ee;
@@ -38,7 +38,7 @@ body {
 }
 
 /* Custom Scrollbar*/
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
@@ -179,7 +179,7 @@ body {
 
 .nav-item:hover i {
   transform: translateY(-2px);
-}
+} 
 
 /* Header */
 .header {
@@ -786,4 +786,4 @@ body {
 }
 .fas {
   font-size: 18px;
-}
+} */
