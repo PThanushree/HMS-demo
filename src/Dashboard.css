@@ -37,7 +37,7 @@ body {
 }
 
 /* Custom Scrollbar*/
- ::-webkit-scrollbar {
+ /* ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
@@ -53,7 +53,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
-}
+} */
 
 /* Layout */
 .container {
@@ -195,4 +195,191 @@ body {
   padding:2px;
   margin-right: 5px;
   border-radius: 50%;
+}
+
+/* Header */
+.header {
+  grid-column: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: var(--shadow-sm);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  margin-left:auto;
+}
+
+.user-profile:hover {
+  background-color: rgba(97, 132, 226, 0.05);
+}
+
+.profile-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  margin-right: 12px;
+  box-shadow: 0 3px 8px rgba(114, 131, 241, 0.05);
+  font-size: 16px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name, .user-dob, .user-phno, .user-addr, .user-id {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.patient-content {
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  gap: 20px; /* Adds space between image and details */
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width:100%;
+}
+
+.patient-img {
+  width:100%;
+  height: 200px;
+  background: rgb(181, 164, 164); /* Placeholder color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  
+}
+
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adds spacing between text lines */
+  font-size: 14px;
+  color: #333;
+}
+
+.page-title {
+  margin-bottom: 24px;
+  margin-top:20px;
+  margin-left:5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.title:hover::after {
+  width: 100%; 
+  /* 
+  ::after creates an underline effect positioned below the text.
+Initial state: The width is 0, making it invisible.
+On hover:
+The underline expands to 100% width.
+transition creates a smooth animation effect.
+transform: translateX(-50%) keeps it centered.
+ */
+}
+
+.table-card {
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 25px;
+  animation: fadeInUp 0.7s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.card-title {
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(248, 249, 250, 0.5);
+}
+
+.card-title h3 {
+  font-size: 19px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.card-title h3 i {
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th,
+.data-table td {
+  padding: 16px 24px;
+  text-align: left;
+}
+
+.data-table th {
+  font-weight: 600;
+  color: var(--text);
+  background-color: #f8f9fa;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 1px 0 0 var(--border);
 }
