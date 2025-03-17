@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import videoCamera from "./assets/video-camera.png";
@@ -16,11 +17,13 @@ function Dashboard() {
           <h1>Patient Panel</h1>
         </div>
         <div className="nav-menu">
+          {/* <Link to="/"></Link> */}
           <div className="nav-item active">
             <i className="fas fa-chart-pie"></i>
             <span>Profile</span>
           </div>
 
+<Link to="/videoCall">
           <div className="nav-item">
             <i className="fas fa-users"></i>
             <span>
@@ -29,6 +32,10 @@ function Dashboard() {
               Video-Call Appointment
             </span>
           </div>
+          </Link>
+
+          
+          <Link to="/Billing">
 
           <div className="nav-item">
             <i className="fas fa-box"></i>
@@ -37,7 +44,9 @@ function Dashboard() {
               Billing and Payments
             </span>
           </div>
+          </Link>
 
+<Link to ="/MedicalHist">
           <div className="nav-item">
             <i className="fas fa-shopping-cart"></i>
             <span>
@@ -45,6 +54,7 @@ function Dashboard() {
               Medical History
             </span>
           </div>
+          </Link>
         </div>{" "}
         {/*nav-menu end*/}
       </div>

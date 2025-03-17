@@ -206,3 +206,49 @@
 // }
 
 // export default App;
+
+
+import React from "react";
+import Dashboard from "./src/Dashboard.jsx";
+import "bootstrap/dist/css/bootstrap.css";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+
+
+
+function App()
+{
+  return (
+    <BrowserRouter>
+    <div className="d-flex">
+      <div className="col-auto">
+        <Dashboard />
+      </div>
+      <div>
+        <Routes>
+          {/* <Route path="/" element={<Dashboard />}></Route> */}
+          <Route path="/videoCall" element={<videoCall/>}></Route>
+          <Route path="/Billing" element={<Billing />}></Route>
+          <Route path="/medicalHist" element={<MedicalHist />}></Route>
+        </Routes>
+      </div>
+    </div>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+
+function videoCall()
+{
+  return <h2>videoCall Appointment</h2>
+}
+
+function Billing()
+{
+  return <h2>Billing and Paymentys</h2>
+}
+
+function MedicalHist()
+{
+  return <h2>Medical History and Records</h2>
+}
