@@ -207,48 +207,38 @@
 
 // export default App;
 
-
 import React from "react";
 import Dashboard from "./src/Dashboard.jsx";
+
 import "bootstrap/dist/css/bootstrap.css";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import VideoCall from "./src/VideoCall.jsx"; // Ensure correct capitalization
+import Billing from "./src/Billing.jsx";
+import Profile from "./src/Profile.jsx";
+import MedicalHist from "./src/MedicalHist.jsx";
 
-function App()
-{
+function App() {
   return (
     <BrowserRouter>
-    <div className="d-flex">
-      <div className="col-auto">
-        <Dashboard />
+      <div className="d-flex">
+        <div className="col-auto">
+          <Dashboard />
+        </div>
+        <div>
+       
+          <Routes>
+          <Route path="/" element={<Profile/>} />
+            <Route path="/videoCall" element={<VideoCall />} />{" "}
+            {/* Correct capitalization */}
+            <Route path="/Billing" element={<Billing />} />
+            <Route path="/medicalHist" element={<MedicalHist />} />
+          </Routes>
+        </div>
       </div>
-      <div>
-        <Routes>
-          {/* <Route path="/" element={<Dashboard />}></Route> */}
-          <Route path="/videoCall" element={<videoCall/>}></Route>
-          <Route path="/Billing" element={<Billing />}></Route>
-          <Route path="/medicalHist" element={<MedicalHist />}></Route>
-        </Routes>
-      </div>
-    </div>
     </BrowserRouter>
   );
 }
+
 export default App;
-
-
-function videoCall()
-{
-  return <h2>videoCall Appointment</h2>
-}
-
-function Billing()
-{
-  return <h2>Billing and Paymentys</h2>
-}
-
-function MedicalHist()
-{
-  return <h2>Medical History and Records</h2>
-}
