@@ -218,15 +218,19 @@ import VideoCall from "./src/VideoCall.jsx"; // Ensure correct capitalization
 import Billing from "./src/Billing.jsx";
 import Profile from "./src/Profile.jsx";
 import MedicalHist from "./src/MedicalHist.jsx";
+import PHeader from "./src/PHeader.jsx";
+import Digital from "./src/Digital_pres.jsx";
 
 function App() {
   return (
     <BrowserRouter>
+
       <div className="d-flex">
         <div className="columnAuto">
           <Dashboard />
         </div>
         <div>
+         
        
           <Routes>
           <Route path="/" element={<Profile/>} />
@@ -234,6 +238,8 @@ function App() {
             {/* Correct capitalization */}
             <Route path="/Billing" element={<Billing />} />
             <Route path="/medicalHist" element={<MedicalHist />} />
+            <Route path="/Prescription" element={<Digital />} />
+
           </Routes>
         </div>
       </div>
