@@ -199,7 +199,7 @@ body {
 
 /* Header */
 .header {
-  grid-column: 2;
+  grid-column: 4;
   background-color: white;
   display: flex;
   align-items: center;
@@ -209,6 +209,7 @@ body {
   z-index: 100;
   position: sticky;
   top: 0;
+  width: 100%;
 }
 
 .user-profile {

@@ -10,9 +10,10 @@ import "./Dashboard.css";
 import videoCall from "./VideoCall.jsx";
 import Billing from "./Billing.jsx";
 
+
 function Dashboard() {
   return (
-    <div className="container">
+    <div className="container flex h-screen">
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
@@ -53,6 +54,16 @@ function Dashboard() {
               <span>
                 <img className="bill-icon" src={Checkup} />
                 Medical History
+              </span>
+            </div>
+          </Link>
+
+          <Link to="/Prescription">
+            <div className="nav-item">
+              <i className="fas fa-shopping-cart"></i>
+              <span>
+                <img className="bill-icon" src={Checkup} />
+               Digital Prescription
               </span>
             </div>
           </Link>
