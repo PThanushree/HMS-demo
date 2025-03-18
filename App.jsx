@@ -223,7 +223,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="d-flex">
-        <div className="col-auto">
+        <div className="columnAuto">
           <Dashboard />
         </div>
         <div>

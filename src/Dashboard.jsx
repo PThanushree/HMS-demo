@@ -12,6 +12,7 @@ import Billing from "./Billing.jsx";
 
 function Dashboard() {
   return (
+    
     <div className="container">
       {/* Sidebar */}
       <div className="sidebar">
@@ -64,6 +65,7 @@ function Dashboard() {
       
       
     </div>
+    
   );
 }
 export default Dashboard;
