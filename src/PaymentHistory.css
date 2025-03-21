@@ -1,0 +1,46 @@
+.payment-history-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .summary-card {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-buttons .btn {
+    min-width: 100px;
+  }
+  
+  .table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .status.success {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status.pending {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .status.rejected {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .pagination-info {
+    font-size: 14px;
+    color: gray;
+  }
+  

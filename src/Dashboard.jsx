@@ -18,7 +18,7 @@ function Dashboard() {
     <div className="container">
 
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className="sidebar ">
         <div className="logo">
           <h1>Patient Panel</h1>
         </div>

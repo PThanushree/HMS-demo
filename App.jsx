@@ -221,26 +221,36 @@ import MedicalHist from "./src/MedicalHist.jsx";
 import PHeader from "./src/PHeader.jsx";
 import Digital from "./src/Digital_pres.jsx";
 
+
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Dashboard from "./Dashboard";
+// import Profile from "./Profile";
+// import VideoCall from "./VideoCall";
+// import Billing from "./Billing";
+// import MedicalHist from "./MedicalHist";
+// import Digital from "./Digital";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <BrowserRouter>
+      <div className="container-fluid">
+        <div className="row vh-100">
+          {/* Sidebar */}
+          <nav className="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar p-3 vh-100">
+            <Dashboard />
+          </nav>
 
-      <div className="d-flex">
-        <div className="columnAuto">
-          <Dashboard />
-        </div>
-        <div>
-         
-       
-          <Routes>
-          <Route path="/" element={<Profile/>} />
-            <Route path="/videoCall" element={<VideoCall />} />{" "}
-            {/* Correct capitalization */}
-            <Route path="/Billing" element={<Billing />} />
-            <Route path="/medicalHist" element={<MedicalHist />} />
-            <Route path="/Prescription" element={<Digital />} />
-
-          </Routes>
+          {/* Main Content */}
+          <main className="col-md-9 col-lg-10 d-flex flex-column p-4" style={{ height: "100vh", overflowY: "auto" }}>
+            <Routes>
+              <Route path="/" element={<Profile />} />
+              <Route path="/videoCall" element={<VideoCall />} />
+              <Route path="/Billing" element={<Billing />} />
+              <Route path="/medicalHist" element={<MedicalHist />} />
+              <Route path="/Prescription" element={<Digital />} />
+            </Routes>
+          </main>
         </div>
       </div>
     </BrowserRouter>
@@ -248,3 +258,6 @@ function App() {
 }
 
 export default App;
+
+
+
