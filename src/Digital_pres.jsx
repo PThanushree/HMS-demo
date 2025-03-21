@@ -27,7 +27,7 @@ export default function DigitalPrescription() {
       </div> */}
 
       {/* Main Content */}
-      <div className="flex-grow-1 p-4">
+      <div className="flex-grow-1 p-4 w-100">
         <div className="d-flex justify-content-between align-items-center mb-4">
           {/* <ul className="nav nav-tabs">
             <li className="nav-item">
@@ -47,7 +47,7 @@ export default function DigitalPrescription() {
             </li>
           </ul> */}
           <div>
-            <button className="btn btn-outline-secondary me-2">
+            <button className="btn   btn-outline-secondary bg-white text-primary me-2 me-2">
               <Printer size={16} className="me-2" /> Print
             </button>
             <button className="btn " style={{backgroundColor:" #4361ee"}}>
@@ -91,7 +91,7 @@ export default function DigitalPrescription() {
                   <td>{med.endDate}</td>
                   <td>{med.missedDoses}</td>
                   <td>
-                    <button className={`btn ${med.action === "Download" ? "btn-primary" : "btn-outline-secondary"} btn-sm`} style={{backgroundColor:" #4361ee"}}>
+                    <button className={`btn ${med.action === "Download" ? "btn-primary " : "btn-outline-secondary"} btn-sm`} style={{backgroundColor:" #4361ee"}}>
                       {med.action}
                     </button>
                   </td>
