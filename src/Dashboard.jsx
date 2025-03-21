@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div className="container flex h-screen">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className="sidebar ">
         <div className="logo">
           <h1>Patient Panel</h1>
         </div>

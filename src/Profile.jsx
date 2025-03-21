@@ -6,9 +6,9 @@ import "bootstrap/dist/css/bootstrap.css";
 
 function Profile() {
   return (
-    <div >
+    <div className="container-fluid p-3">
      
-      <div className="header">
+      <div className="header d-flex align-items-center mb-4">
         <div className="user-profile">
           <div className="profile-img">JD</div>
           <div className="user-info">
@@ -19,7 +19,7 @@ function Profile() {
       </div>
 
       {/* Main Container */}
-      <div className="main-content">
+      <div className="main-content d-flex flex-column flex-md-row">
         <div className="patient-detail">
           <div className="page-title">
             <div className="title">Patient Detail</div>
