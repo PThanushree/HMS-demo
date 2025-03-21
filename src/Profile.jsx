@@ -27,7 +27,10 @@ function Profile() {
 
           <div className="patient-content">
             <div>
+
             <img className="patient-img" src={Profileimg} />
+
+              
             </div>
 
             <div className="patient-info">

@@ -15,6 +15,7 @@ const PaymentHistory = () => {
   ];
 
   return (
+<<<<<<< HEAD
     <div className="d-flex vh-100">
       {/* Main Content Container */}
       <div className="container-fluid mt-4 payment-history-container flex-grow-1">
@@ -69,6 +70,9 @@ const PaymentHistory = () => {
         </div>
       </div>
     </div>
+=======
+    <h2>Billing and Payment</h2>
+>>>>>>> e97eecb6e96009a38805404b505e9d3c9d9cb7f3
   );
 };
 

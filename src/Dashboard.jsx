@@ -13,7 +13,10 @@ import Billing from "./Billing.jsx";
 
 function Dashboard() {
   return (
-    <div className="container flex h-screen">
+
+    
+    <div className="container">
+
       {/* Sidebar */}
       <div className="sidebar ">
         <div className="logo">
@@ -75,6 +78,7 @@ function Dashboard() {
       
       
     </div>
+    
   );
 }
 export default Dashboard;
