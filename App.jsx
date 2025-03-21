@@ -220,6 +220,7 @@ import Profile from "./src/Profile.jsx";
 import MedicalHist from "./src/MedicalHist.jsx";
 import PHeader from "./src/PHeader.jsx";
 import Digital from "./src/Digital_pres.jsx";
+import "./src//Dashboard.css";
 
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";

@@ -122,7 +122,13 @@ body {
 }
 
 .nav-menu {
-  padding: 10px 0;
+  padding: 7px 0;
+  /* Ensures nav items are stacked vertically */
+
+  display: flex;
+  flex-direction: column; /* Aligns items in a single column */
+  width: 100%;
+
 }
 
 /* .menu-heading {
@@ -135,7 +141,7 @@ body {
 } */
 
 .nav-item {
-  padding: 12px 25px;
+  padding: 7px 25px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -192,15 +198,30 @@ body {
 } 
 
 .video-icon {
-  width: 20px;  /* Adjust size as needed */
-  height: 20px;
+  width: 23px;  /* Adjust size as needed */
+  height: 23px;
   padding:2px;
   margin-right: 5px;
   border-radius: 50%;
 }
 .bill-icon {
   width: 23px;  /* Adjust size as needed */
-  height: 26px;
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+.pres-icon{
+  width: 23px;  /* Adjust size as needed */
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+
+}
+.profile-icon{
+  width: 23px;  /* Adjust size as needed */
+  height: 23px;
   padding:2px;
   margin-right: 5px;
   border-radius: 50%;
@@ -409,3 +430,53 @@ transform: translateX(-50%) keeps it centered.
   top: 0;
   box-shadow: 0 1px 0 0 var(--border);
 }
+/* Ensure body and container take full height without overflow */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent unnecessary scrolling */
+}
+
+/* Fix sidebar overflow */
+.sidebar {
+  height: 100vh; /* Full height */
+  overflow-y: auto; /* If necessary, enables scrolling inside sidebar */
+  width: 250px; /* Adjust width as per design */
+}
+
+/* Prevent extra spacing issues */
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Fix nav-menu alignment */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust spacing */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.video-icon, .bill-icon {
+  width: 20px; /* Adjust as needed */
+  height: auto;
+}
+a {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits text color from parent */
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
