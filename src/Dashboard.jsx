@@ -9,6 +9,8 @@ import Profile from "./assets/profile-icon.png.jpg";
 import "./Dashboard.css";
 import videoCall from "./VideoCall.jsx";
 import Billing from "./Billing.jsx";
+import user from "./assets/user.png";
+import note from "./assets/upload.png";
 
 
 function Dashboard() {
@@ -18,32 +20,31 @@ function Dashboard() {
     <div className="container">
 
       {/* Sidebar */}
-      <div className="sidebar ">
+      <div className="sidebar">
         <div className="logo">
           <h1>Patient Panel</h1>
         </div>
         <div className="nav-menu">
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="nav-item active">
-            <i className="fas fa-chart-pie"></i>
+          <img className="profile-icon" src={user} />
             <span>Profile</span>
           </div>
           </Link>
 
-          <Link to="/videoCall">
+          <Link to="/videoCall" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
-              <i className="fas fa-users"></i>
               <span>
-                {" "}
+                 {" "}
                 <img className="video-icon" src={videoCamera} />
                 Video-Call Appointment
               </span>
             </div>
           </Link>
 
-          <Link to="/Billing">
+          <Link to="/Billing" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
-              <i className="fas fa-box"></i>
+              
               <span>
                 <img className="bill-icon" src={Bill} />
                 Billing and Payments
@@ -51,9 +52,9 @@ function Dashboard() {
             </div>
           </Link>
 
-          <Link to="/MedicalHist">
+          <Link to="/MedicalHist" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
-              <i className="fas fa-shopping-cart"></i>
+             
               <span>
                 <img className="bill-icon" src={Checkup} />
                 Medical History
@@ -61,11 +62,11 @@ function Dashboard() {
             </div>
           </Link>
 
-          <Link to="/Prescription">
+          <Link to="/Prescription" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
-              <i className="fas fa-shopping-cart"></i>
+          
               <span>
-                <img className="bill-icon" src={Checkup} />
+                <img className="pres-icon" src={note} />
                Digital Prescription
               </span>
             </div>

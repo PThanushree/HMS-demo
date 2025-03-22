@@ -78,11 +78,14 @@ document.addEventListener("click", () => {
 
 
   return (
+
+    
     <div className="container-fluid mt-4 payment-history-container">
       <div className="d-flex justify-content-between align-items-center">
         <h1>Payment History</h1>
         <button className="btn btn-primary" onClick={() => setShowForm(true)}>New Payment</button>
       </div>
+
 
       {showForm ? (
         <div className="full-screen-modal">
