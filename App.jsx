@@ -222,14 +222,7 @@ import PHeader from "./src/PHeader.jsx";
 import Digital from "./src/Digital_pres.jsx";
 
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Dashboard from "./Dashboard";
-// import Profile from "./Profile";
-// import VideoCall from "./VideoCall";
-// import Billing from "./Billing";
-// import MedicalHist from "./MedicalHist";
-// import Digital from "./Digital";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -237,7 +230,8 @@ function App() {
       <div className="container-fluid">
         <div className="row vh-100">
           {/* Sidebar */}
-          <nav className="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar p-3 vh-100">
+          <nav className="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar p-3 vh-100" >
+         
             <Dashboard />
           </nav>
 
