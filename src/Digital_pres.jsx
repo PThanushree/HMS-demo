@@ -14,43 +14,19 @@ export default function DigitalPrescription() {
 
   return (
     <div className="d-flex vh-100 bg-light">
-      {/* Sidebar */}
-      {/* <div className="border-end bg-white p-3" style={{ width: "250px" }}>
-        <nav className="nav flex-column">
-          <SidebarItem icon={<BarChart size={20} />} label="Dashboard" active />
-          <SidebarItem icon={<User size={20} />} label="Digital" />
-          <SidebarItem icon={<FileCode size={20} />} label="Software Protocol" />
-          <SidebarItem icon={<PillIcon size={20} />} label="Medication Tracker" />
-          <SidebarItem icon={<UserCircle size={20} />} label="Patient Account" />
-          <SidebarItem icon={<Settings size={20} />} label="Settings" />
-        </nav>
-      </div> */}
+     
+     
 
       {/* Main Content */}
       <div className="flex-grow-1 p-4 w-100">
         <div className="d-flex justify-content-between align-items-center mb-4">
-          {/* <ul className="nav nav-tabs">
-            <li className="nav-item">
-              <button className={`nav-link ${activeTab === "personal-info" && "active"}`} onClick={() => setActiveTab("personal-info")} >
-                Personal Info
-              </button>
-            </li>
-            <li className="nav-item">
-              <button className={`nav-link ${activeTab === "prescription-info" && "active"}`} onClick={() => setActiveTab("prescription-info")} >
-                Prescription Info
-              </button>
-            </li>
-            <li className="nav-item">
-              <button className={`nav-link ${activeTab === "signature" && "active"}`} onClick={() => setActiveTab("signature")} >
-                Signature
-              </button>
-            </li>
-          </ul> */}
+          
           <div>
-            <button className="btn   btn-outline-secondary bg-white text-primary me-2 me-2">
+            <button className="btn btn-outline-secondary bg-white  me-2"
+            style={{color : "rgba(14, 39, 82, 1)"}} >
               <Printer size={16} className="me-2" /> Print
             </button>
-            <button className="btn " style={{backgroundColor:" #4361ee"}}>
+            <button className="btn " style={{ backgroundColor: "rgba(14, 39, 82, 1)", color: "white" }}>
               <Download size={16} className="me-2" /> Download
             </button>
           </div>

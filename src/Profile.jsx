@@ -34,11 +34,13 @@ function Profile() {
             </div>
 
             <div className="patient-info">
-              <div className="user-name">Patient Name: John Doe</div>
-              <div className="user-dob">Date of Birth: 03/05/1998</div>
-              <div className="user-id">Patient ID: 01PT852oC</div>
-              <div className="user-phno">Contact Number: 598721344xx</div>
-              <div className="user-addr">Residential Address: City Name</div>
+              <div className="user-name">Patient Name: <span>John Doe</span></div>
+              <div className="user-dob">Date of Birth: <span>03/05/1998</span></div>
+              <div className="user-id">Patient ID: <span>01PT852oC</span></div>
+              <div className="user-phno">Contact Number: <span>598721344xx</span></div>
+              <div className="user-addr">Residential Address: <span>City Name</span></div>
+              <div className="user-bloodgrp">Patient Blood-Group: <span>O+</span></div>
+              <div className="user-age">Patient Age: <span>35</span></div>
             </div>
           </div>
 

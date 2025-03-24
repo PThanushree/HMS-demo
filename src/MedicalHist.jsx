@@ -46,7 +46,7 @@ const MedicalHistory = () => {
         <div className="container-fluid mt-4">
             {/* Patient Info Card */}
             <div className="card shadow-sm p-3 mb-4">
-                <h2 className="text-center">{patientInfo.name}</h2>
+                <h2 className="text-center" style={{color :"rgba(14, 39, 82, 1)"}} >{patientInfo.name}</h2>
                 <p className="text-center text-muted">
                     Status: {patientInfo.status} | Age: {patientInfo.age} | Nationality: {patientInfo.nationality} | Blood Type: {patientInfo.bloodType}
                 </p>
@@ -54,13 +54,14 @@ const MedicalHistory = () => {
 
             {/* Action Buttons */}
             <div className="d-flex justify-content-center mb-4">
-                <button className="btn btn-outline-primary me-2">Record Book</button>
-                <button className="btn btn-primary me-2">Consultation</button>
-                <button className="btn btn-outline-danger">Add Note</button>
+                <button className="btn me-2" style={{background:"rgba(14, 39, 82, 1)",color :"white"}}>Record Book</button>
+                <button className="btn btn-outline-primary">Add Note</button>
+                <button className="btn me-2"style={{background:"rgba(14, 39, 82, 1)",color :"white"}}>Consultation</button>
+                
             </div>
 
             {/* Medical History Records */}
-            <h3 className="mb-3 text-center">Medical History</h3>
+            <h3 className="mb-3 text-center" style={{color :"rgba(14, 39, 82, 1)" }}>Medical History</h3>
             <div className="row">
                 {records.map((record, index) => (
                     // Use col-12 for full width on small screens and col-md-6 for half width on medium screens and above
@@ -77,12 +78,12 @@ const MedicalHistory = () => {
             </div>
 
             {/* Pagination */}
-            <nav>
+            {/* <nav>
                 <ul className="pagination justify-content-center">
                     <li className="page-item"><a className="page-link" href="#">Medical History</a></li>
                     <li className="page-item"><a className="page-link" href="#">Diagnoses</a></li>
                 </ul>
-            </nav>
+            </nav> */}
         </div>
     );
 };

@@ -260,7 +260,7 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  background: rgba(14, 39, 82, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +276,7 @@ body {
   flex-direction: column;
 }
 
-.user-name, .user-dob, .user-phno, .user-addr, .user-id {
+.user-name, .user-dob, .user-phno, .user-addr, .user-id, .user-bloodgrp , .user-age {
   font-weight: 600;
   font-size: 14px;
 }

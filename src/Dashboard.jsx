@@ -13,11 +13,6 @@ import user from "./assets/user.png";
 import note from "./assets/upload.png";
 
 
-const [activeTab, setActiveTab] = useState("");
-onclick()
-{
-
-}
 
 
 function Dashboard() {
