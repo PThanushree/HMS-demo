@@ -43,7 +43,7 @@ function Profile() {
           </div>
 
           {/* Patient History Table */}
-          <div className="table-card">
+          {/* <div className="table-card">
             <div className="card-title">
               <h3>
                 <i className="fas fa-shopping-bag"></i> Recent Activities
@@ -91,7 +91,7 @@ function Profile() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -13,8 +13,16 @@ import user from "./assets/user.png";
 import note from "./assets/upload.png";
 
 
+const [activeTab, setActiveTab] = useState("");
+onclick()
+{
+
+}
+
+
 function Dashboard() {
   return (
+
 
     
     <div className="container">
@@ -25,14 +33,14 @@ function Dashboard() {
           <h1>Patient Panel</h1>
         </div>
         <div className="nav-menu">
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="nav-item active">
+          <Link to="/" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div className="nav-item">
           <img className="profile-icon" src={user} />
             <span>Profile</span>
           </div>
           </Link>
 
-          <Link to="/videoCall" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/videoCall" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
               <span>
                  {" "}
@@ -42,7 +50,7 @@ function Dashboard() {
             </div>
           </Link>
 
-          <Link to="/Billing" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/Billing" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
               
               <span>
@@ -52,7 +60,7 @@ function Dashboard() {
             </div>
           </Link>
 
-          <Link to="/MedicalHist" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/MedicalHist" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="nav-item">
              
               <span>
