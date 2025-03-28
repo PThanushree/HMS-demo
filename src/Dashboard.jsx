@@ -1,85 +1,61 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { Link, useLocation } from "react-router-dom";
+import "./Dashboard.css";
 import videoCamera from "./assets/video-camera.png";
 import Bill from "./assets/billing-machine.png";
 import Checkup from "./assets/medical-checkup.png";
-import Profile from "./assets/profile-icon.png.jpg";
-import "./Dashboard.css";
-import videoCall from "./VideoCall.jsx";
-import Billing from "./Billing.jsx";
 import user from "./assets/user.png";
 import note from "./assets/upload.png";
 
-
 function Dashboard() {
+  const location = useLocation(); // Get current page URL
+
   return (
-
-    
     <div className="container">
-
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
           <h1>Patient Panel</h1>
         </div>
+
         <div className="nav-menu">
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="nav-item active">
-          <img className="profile-icon" src={user} />
-            <span>Profile</span>
-          </div>
-          </Link>
-
-          <Link to="/videoCall" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-              <span>
-                 {" "}
-                <img className="video-icon" src={videoCamera} />
-                Video-Call Appointment
-              </span>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
+              <img className="profile-icon" src={user} alt="Profile" />
+              <span>Profile</span>
             </div>
           </Link>
 
-          <Link to="/Billing" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-              
-              <span>
-                <img className="bill-icon" src={Bill} />
-                Billing and Payments
-              </span>
+          <Link to="/videoCall" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className={`nav-item ${location.pathname === "/videoCall" ? "active" : ""}`}>
+              <img className="video-icon" src={videoCamera} alt="Video Call" />
+              <span>Video-Call Appointment</span>
             </div>
           </Link>
 
-          <Link to="/MedicalHist" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-             
-              <span>
-                <img className="bill-icon" src={Checkup} />
-                Medical History
-              </span>
+          <Link to="/Billing" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className={`nav-item ${location.pathname === "/Billing" ? "active" : ""}`}>
+              <img className="bill-icon" src={Bill} alt="Billing" />
+              <span>Billing and Payments</span>
             </div>
           </Link>
 
-          <Link to="/Prescription" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-          
-              <span>
-                <img className="pres-icon" src={note} />
-               Digital Prescription
-              </span>
+          <Link to="/MedicalHist" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className={`nav-item ${location.pathname === "/MedicalHist" ? "active" : ""}`}>
+              <img className="bill-icon" src={Checkup} alt="Medical History" />
+              <span>Medical History</span>
             </div>
           </Link>
-        </div>{" "}
-        {/*nav-menu end*/}
+
+          <Link to="/Prescription" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className={`nav-item ${location.pathname === "/Prescription" ? "active" : ""}`}>
+              <img className="pres-icon" src={note} alt="Prescription" />
+              <span>Digital Prescription</span>
+            </div>
+          </Link>
+        </div>
       </div>
-      {/*Search-bar end*/}
-
-      
-      
     </div>
-    
   );
 }
+
 export default Dashboard;
