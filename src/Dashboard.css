@@ -270,10 +270,7 @@ body {
   box-shadow: 0 3px 8px rgba(114, 131, 241, 0.05);
   font-size: 16px;
 }
-.profile-container {
-  width: 400px; /* Adjust width to fit perfectly beside the sidebar */
-  max-width: 100%;
-}
+
 .profile-container {
   width: 400px; /* Fixed width */
   max-width: 100%;
@@ -282,14 +279,43 @@ body {
   flex-direction: column;
 }
 
-.patient-info {
-  flex-grow: 1; /* Pushes button to the bottom */
+.profile-img-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
 }
 
-.button-container {
-  width: 100%;
-  padding-top: 10px;
+.patient-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  object-fit: cover;
 }
+
+.edit-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background-color: rgba(14, 39, 82, 1);
+  color: white;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: rgba(20, 50, 100, 1);
+}
+
+
+
 .profile-container {
   width: 400px; /* Fixed width */
   max-width: 100%;
@@ -299,12 +325,14 @@ body {
 }
 
 .patient-info {
-  flex-grow: 1; /* Pushes button to bottom */
+  width: 100%;
+  flex-grow: 1;
+  min-height: 100px; /* Prevents collapsing */
+  max-height: fit-content;
+  overflow: auto; /* Enables scrolling inside */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
-.btn-sm {
-  width: 80px; /* Makes the button small */
-}
 
 
 
@@ -349,9 +377,13 @@ body {
  
 }
 
+
 .patient-img {
-  width:100%;
-  height: 200px;
+  width: 100%; /* Keep it responsive */
+  max-width: 200px; /* Prevent it from growing too large */
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  border-radius: 50%; /* Optional: makes it circular */
   background: rgb(181, 164, 164); 
   display: flex;
   align-items: center;
@@ -359,7 +391,6 @@ body {
   color: white;
   font-weight: bold;
   font-size: 14px;
-  
 }
 
 
@@ -388,77 +419,6 @@ body {
   color: var(--dark);
   position: relative;
   padding-bottom: 10px;
-}
-
-
-.title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-light));
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-  transform: translateX(-50%);
-}
-
-.title:hover::after {
-  width: 100%; 
- 
-}
-
-.table-card {
-  background-color: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  margin-bottom: 25px;
-  animation: fadeInUp 0.7s ease;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.card-title {
-  padding: 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(248, 249, 250, 0.5);
-}
-
-.card-title h3 {
-  font-size: 19px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.card-title h3 i {
-  margin-right: 10px;
-  color: var(--primary);
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.data-table th,
-.data-table td {
-  padding: 14px 20px;
-  text-align: left;
-}
-
-.data-table th {
-  font-weight: 600;
-  color: var(--text);
-  background-color: #f8f9fa;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 1px 0 0 var(--border);
 }
 
 body, html {
@@ -509,15 +469,9 @@ a {
 }
 
 
-<<<<<<< HEAD
-.sidebar{
-  overflow: hidden;
-  width:500px;
-}
-=======
 
 
 
 
 
->>>>>>> a8457ee16e04a3d8a900106301952fb72512f472
+

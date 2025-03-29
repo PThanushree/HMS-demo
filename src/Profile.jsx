@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
+import { FaEdit, FaSave } from "react-icons/fa"; // Import icons
 import "./Dashboard.css";
 import Profileimg from "./assets/profile-icon.png.jpg";
-import "bootstrap/dist/css/bootstrap.css";
 
 function Profile() {
   const [profile, setProfile] = useState({
@@ -12,17 +11,18 @@ function Profile() {
     id: "01PT852oC",
     phone: "598721344xx",
     address: "City Name",
+    age:"35",
+    bloodGrp:"O+"
   });
 
   const [isEditing, setIsEditing] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="container-fluid p-3">
+    <div className="container-fluid p-3 vh-100 d-flex flex-column">
       {/* Profile Header */}
       <div className="header d-flex align-items-center mb-4">
         <div className="user-profile d-flex align-items-center">
@@ -35,13 +35,20 @@ function Profile() {
       </div>
 
       {/* Main Profile Section */}
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center flex-grow-1" style={{ overflowY: "auto" }}>
         <div className="profile-container p-4 border rounded shadow-sm bg-white d-flex flex-column">
-          <h3 className="text-center mb-3">Patient Detail</h3>
+          <h3 className="text-center mb-3" style={{color: "rgba(20, 50, 100, 1)"}}>Patient Detail</h3>
 
-          {/* Profile Image */}
-          <div className="text-center">
-            <img className="patient-img mb-3" src={Profileimg} alt="Profile" />
+          {/* Profile Image & Edit Button */}
+          <div className="profile-img-container">
+            <img className="patient-img" src={Profileimg} alt="Profile" />
+            {/* Small Edit Button on Image */}
+            <button
+              className="edit-btn"
+              onClick={() => setIsEditing(!isEditing)}
+            >
+              {isEditing ? <FaSave /> : <FaEdit />}
+            </button>
           </div>
 
           {/* Editable Inputs */}
@@ -92,6 +99,26 @@ function Profile() {
                   onChange={handleChange}
                   className="form-control mb-2"
                 />
+
+                
+         <label className="form-label">Age</label>
+                <input
+                  type="text"
+                  name="age"
+                  value={profile.age}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+
+                
+         <label className="form-label">Blood Group</label>
+                <input
+                  type="text"
+                  name="bloodGrp"
+                  value={profile.bloodGrp}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
               </>
             ) : (
               <>
@@ -100,18 +127,10 @@ function Profile() {
                 <div className="mb-2"><strong>Patient ID:</strong> {profile.id}</div>
                 <div className="mb-2"><strong>Contact Number:</strong> {profile.phone}</div>
                 <div className="mb-2"><strong>Residential Address:</strong> {profile.address}</div>
+                <div className="mb-2"><strong>Age:</strong> {profile.age}</div>
+                <div className="mb-2"><strong>Blood Group:</strong> {profile.bloodGrp}</div>
               </>
             )}
-          </div>
-
-          {/* Small Button Inside Profile Container */}
-          <div className="text-center mt-3">
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => setIsEditing(!isEditing)}
-            >
-              {isEditing ? "Save" : "Edit"}
-            </button>
           </div>
         </div>
       </div>
@@ -120,4 +139,3 @@ function Profile() {
 }
 
 export default Profile;
->>>>>>> a8457ee16e04a3d8a900106301952fb72512f472

@@ -55,7 +55,7 @@ const MedicalHistory = () => {
             {/* Action Buttons */}
             <div className="d-flex justify-content-center mb-4">
                 <button className="btn me-2" style={{background:"rgba(14, 39, 82, 1)",color :"white"}}>Record Book</button>
-                <button className="btn btn-outline-primary">Add Note</button>
+                <button className="btn btn-outline-primary me-2">Add Note</button>
                 <button className="btn me-2"style={{background:"rgba(14, 39, 82, 1)",color :"white"}}>Consultation</button>
                 
             </div>
