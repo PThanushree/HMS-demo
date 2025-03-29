@@ -30,7 +30,7 @@ function App() {
           </nav>
 
           {/* Main Content */}
-          <main className="col-md-9 col-lg-10 d-flex flex-column p-4" style={{ height: "100vh", overflowY: "auto" }}>
+          <main className="col-md-9 col-lg-10 d-flex flex-column p-4" style={{ height: "100vh" }}>
             <Routes>
               <Route path="/" element={<Profile />} />
               <Route path="/videoCall"  element={<VideoCall />} />
@@ -46,6 +46,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

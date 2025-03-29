@@ -1,88 +1,42 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import user from "./assets/user.png";
 import videoCamera from "./assets/video-camera.png";
 import Bill from "./assets/billing-machine.png";
 import Checkup from "./assets/medical-checkup.png";
-import Profile from "./assets/profile-icon.png.jpg";
-import "./Dashboard.css";
-import videoCall from "./VideoCall.jsx";
-import Billing from "./Billing.jsx";
-import user from "./assets/user.png";
 import note from "./assets/upload.png";
-
-
-
+import "./Dashboard.css";
 
 function Dashboard() {
   return (
-
-
-    
-    <div className="container">
-
+    <div className="d-flex vh-100">
       {/* Sidebar */}
-      <div className="sidebar">
-        <div className="logo">
-          <h1>Patient Panel</h1>
-        </div>
-        <div className="nav-menu">
-          <Link to="/" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="nav-item">
-          <img className="profile-icon" src={user} />
+      <div className="bg-dark text-white p-4 d-flex flex-column" style={{ width: "16rem" }}>
+        <div className="fs-4 fw-bold mb-4 text-center">Patient Panel</div>
+        <nav className="d-flex flex-column gap-3">
+          <Link to="/" className="d-flex align-items-center gap-2 p-2 rounded bg-hover-dark text-white text-decoration-none">
+            <img className="" src={user} alt="Profile" width="24" height="24" />
             <span>Profile</span>
-          </div>
           </Link>
-
-          <Link to="/videoCall" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-              <span>
-                 {" "}
-                <img className="video-icon" src={videoCamera} />
-                Video-Call Appointment
-              </span>
-            </div>
+          <Link to="/videoCall" className="d-flex align-items-center gap-2 p-2 rounded bg-hover-dark text-white text-decoration-none">
+            <img className="" src={videoCamera} alt="Video Call" width="24" height="24" />
+            <span>Video-Call Appointment</span>
           </Link>
-
-          <Link to="/Billing" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-              
-              <span>
-                <img className="bill-icon" src={Bill} />
-                Billing and Payments
-              </span>
-            </div>
+          <Link to="/Billing" className="d-flex align-items-center gap-2 p-2 rounded bg-hover-dark text-white text-decoration-none">
+            <img className="" src={Bill} alt="Billing" width="24" height="24" />
+            <span>Billing and Payments</span>
           </Link>
-
-          <Link to="/MedicalHist" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-             
-              <span>
-                <img className="bill-icon" src={Checkup} />
-                Medical History
-              </span>
-            </div>
+          <Link to="/MedicalHist" className="d-flex align-items-center gap-2 p-2 rounded bg-hover-dark text-white text-decoration-none">
+            <img className="" src={Checkup} alt="Medical History" width="24" height="24" />
+            <span>Medical History</span>
           </Link>
-
-          <Link to="/Prescription" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="nav-item">
-          
-              <span>
-                <img className="pres-icon" src={note} />
-               Digital Prescription
-              </span>
-            </div>
+          <Link to="/Prescription" className="d-flex align-items-center gap-2 p-2 rounded bg-hover-dark text-white text-decoration-none">
+            <img className="" src={note} alt="Prescription" width="24" height="24" />
+            <span>Digital Prescription</span>
           </Link>
-        </div>{" "}
-        {/*nav-menu end*/}
+        </nav>
       </div>
-      {/*Search-bar end*/}
-
-      
-      
     </div>
-    
   );
 }
+
 export default Dashboard;
