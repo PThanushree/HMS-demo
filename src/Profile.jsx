@@ -1,51 +1,123 @@
- import React from "react";
- import "./Dashboard.css";
- import Profileimg from "./assets/profile-icon.png.jpg";
- import "bootstrap/dist/css/bootstrap.css";
 
+import React, { useState } from "react";
+import "./Dashboard.css";
+import Profileimg from "./assets/profile-icon.png.jpg";
+import "bootstrap/dist/css/bootstrap.css";
 
- function Profile() {
-   return (
-     <div >
-     
-       <div className="header">
-         <div className="user-profile">
-           <div className="profile-img">JD</div>
-           <div className="user-info">
-             <div className="user-name">John Doe</div>
-             <div className="user-role">Administrator</div>
-           </div>
-         </div>
-       </div>
+function Profile() {
+  const [profile, setProfile] = useState({
+    name: "John Doe",
+    role: "Patient",
+    dob: "1998-05-03",
+    id: "01PT852oC",
+    phone: "598721344xx",
+    address: "City Name",
+  });
 
-       {/* Main Container */}
-       <div className="main-content">
-         <div className="patient-detail">
-           <div className="page-title">
-             <div className="title">Patient Detail</div>
-           </div>
+  const [isEditing, setIsEditing] = useState(false);
 
-           <div className="patient-content">
-             <div>
+  // Handle input changes
+  const handleChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
 
-             <img className="patient-img" src={Profileimg} />
+  return (
+    <div className="container-fluid p-3">
+      {/* Profile Header */}
+      <div className="header d-flex align-items-center mb-4">
+        <div className="user-profile d-flex align-items-center">
+          <div className="profile-img me-2">{profile.name.charAt(0)}</div>
+          <div className="user-info">
+            <div className="user-name">{profile.name}</div>
+            <div className="user-role">{profile.role}</div>
+          </div>
+        </div>
+      </div>
 
-              
-             </div>
+      {/* Main Profile Section */}
+      <div className="d-flex justify-content-center">
+        <div className="profile-container p-4 border rounded shadow-sm bg-white d-flex flex-column">
+          <h3 className="text-center mb-3">Patient Detail</h3>
 
-             <div className="patient-info">
-               <div className="user-name">Patient Name: <span>John Doe</span></div>
-               <div className="user-dob">Date of Birth: 03/05/1998</div>
-               <div className="user-id">Patient ID: 01PT852oC</div>
-               <div className="user-phno">Contact Number: 598721344xx</div>
-               <div className="user-addr">Residential Address: City Name</div>
-             </div>
-           </div>
+          {/* Profile Image */}
+          <div className="text-center">
+            <img className="patient-img mb-3" src={Profileimg} alt="Profile" />
+          </div>
 
-          
-         </div>
-       </div>
-     </div>
-   );
- }
- export default Profile;
+          {/* Editable Inputs */}
+          <div className="patient-info text-start flex-grow-1">
+            {isEditing ? (
+              <>
+                <label className="form-label">Patient Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={profile.name}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+
+                <label className="form-label">Date of Birth</label>
+                <input
+                  type="date"
+                  name="dob"
+                  value={profile.dob}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+
+                <label className="form-label">Patient ID</label>
+                <input
+                  type="text"
+                  name="id"
+                  value={profile.id}
+                  disabled
+                  className="form-control mb-2"
+                />
+
+                <label className="form-label">Contact Number</label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={profile.phone}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+
+                <label className="form-label">Residential Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={profile.address}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+              </>
+            ) : (
+              <>
+                <div className="mb-2"><strong>Patient Name:</strong> {profile.name}</div>
+                <div className="mb-2"><strong>Date of Birth:</strong> {profile.dob}</div>
+                <div className="mb-2"><strong>Patient ID:</strong> {profile.id}</div>
+                <div className="mb-2"><strong>Contact Number:</strong> {profile.phone}</div>
+                <div className="mb-2"><strong>Residential Address:</strong> {profile.address}</div>
+              </>
+            )}
+          </div>
+
+          {/* Small Button Inside Profile Container */}
+          <div className="text-center mt-3">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => setIsEditing(!isEditing)}
+            >
+              {isEditing ? "Save" : "Edit"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Profile;
+>>>>>>> a8457ee16e04a3d8a900106301952fb72512f472
