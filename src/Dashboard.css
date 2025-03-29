@@ -198,21 +198,21 @@ body {
 } 
 
 .video-icon {
-  width: 23px;  /* Adjust size as needed */
+  width: 23px;  
   height: 23px;
   padding:2px;
   margin-right: 5px;
   border-radius: 50%;
 }
 .bill-icon {
-  width: 23px;  /* Adjust size as needed */
+  width: 23px; 
   height: 23px;
   padding:2px;
   margin-right: 5px;
   border-radius: 50%;
 }
 .pres-icon{
-  width: 23px;  /* Adjust size as needed */
+  width: 23px; 
   height: 23px;
   padding:2px;
   margin-right: 5px;
@@ -220,7 +220,7 @@ body {
 
 }
 .profile-icon{
-  width: 23px;  /* Adjust size as needed */
+  width: 23px;  
   height: 23px;
   padding:2px;
   margin-right: 5px;
@@ -270,6 +270,43 @@ body {
   box-shadow: 0 3px 8px rgba(114, 131, 241, 0.05);
   font-size: 16px;
 }
+.profile-container {
+  width: 400px; /* Adjust width to fit perfectly beside the sidebar */
+  max-width: 100%;
+}
+.profile-container {
+  width: 400px; /* Fixed width */
+  max-width: 100%;
+  min-height: 550px; /* Ensures enough space for the button */
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-info {
+  flex-grow: 1; /* Pushes button to the bottom */
+}
+
+.button-container {
+  width: 100%;
+  padding-top: 10px;
+}
+.profile-container {
+  width: 400px; /* Fixed width */
+  max-width: 100%;
+  min-height: 550px; /* Ensures enough space */
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-info {
+  flex-grow: 1; /* Pushes button to bottom */
+}
+
+.btn-sm {
+  width: 80px; /* Makes the button small */
+}
+
+
 
 .user-info {
   display: flex;
@@ -299,13 +336,13 @@ body {
 
 .patient-content {
   display:flex;
-  align-items: center; /* Aligns items vertically */
-  gap: 20px; /* Adds space between image and details */
+  align-items: center; 
+  gap: 20px; 
   background: #f8f9fa;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100vw; /* Full viewport width */
+  width: 100vw; 
   margin-left: 0;
   margin-right: 0;
  margin-bottom:35px;
@@ -315,7 +352,7 @@ body {
 .patient-img {
   width:100%;
   height: 200px;
-  background: rgb(181, 164, 164); /* Placeholder color */
+  background: rgb(181, 164, 164); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,7 +366,7 @@ body {
 .patient-info {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adds spacing between text lines */
+  gap: 10px; 
   font-size: 14px;
   color: #333;
 }
@@ -369,14 +406,7 @@ body {
 
 .title:hover::after {
   width: 100%; 
-  /* 
-  ::after creates an underline effect positioned below the text.
-Initial state: The width is 0, making it invisible.
-On hover:
-The underline expands to 100% width.
-transition creates a smooth animation effect.
-transform: translateX(-50%) keeps it centered.
- */
+ 
 }
 
 .table-card {
@@ -430,32 +460,31 @@ transform: translateX(-50%) keeps it centered.
   top: 0;
   box-shadow: 0 1px 0 0 var(--border);
 }
-/* Ensure body and container take full height without overflow */
+
 body, html {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent unnecessary scrolling */
+  overflow: hidden; 
 }
 
-/* Fix sidebar overflow */
+
 .sidebar {
-  height: 100vh; /* Full height */
-  overflow-y: auto; /* If necessary, enables scrolling inside sidebar */
-  width: 250px; /* Adjust width as per design */
+  height: 100vh; 
+  overflow-y: auto; 
+  width: 250px; 
 }
 
-/* Prevent extra spacing issues */
+
 .container {
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
-/* Fix nav-menu alignment */
 .nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adjust spacing */
+  gap: 10px; 
 }
 
 .nav-item {
@@ -467,16 +496,21 @@ body, html {
 }
 
 .video-icon, .bill-icon {
-  width: 20px; /* Adjust as needed */
+  width: 20px; 
   height: auto;
 }
 a {
-  text-decoration: none; /* Removes underline */
-  color: inherit; /* Inherits text color from parent */
+  text-decoration: none; 
+  color: inherit; 
 }
 .link {
   text-decoration: none;
   color: inherit;
 }
+
+
+
+
+
 
 
