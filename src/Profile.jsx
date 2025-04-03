@@ -28,7 +28,7 @@ function Profile() {
         <div className="user-profile d-flex align-items-center">
           <div className="profile-img me-2">{profile.name.charAt(0)}</div>
           <div className="user-info">
-            <div className="user-name">{profile.name}</div>
+            <div className="user-name"  style={{fontWeight:"normal",fontSize:"14px"}}>{profile.name}</div>
             <div className="user-role">{profile.role}</div>
           </div>
         </div>
