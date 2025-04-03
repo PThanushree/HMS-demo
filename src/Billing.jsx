@@ -6,23 +6,20 @@ import "./PaymentHistory.css";
 const PaymentHistory = () => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("Pending");
   const [newPayment, setNewPayment] = useState({
     id: "",
     date: "",
     amount: "",
-    cardType: "Credit Card",
+    cardType: "",
     status: "Pending",
   });
-
-  const toggleRow = (index) => {
-    setExpandedRow(expandedRow === index ? null : index);
-  };
 
   const [data, setData] = useState([
     { id: "#15267", date: "Mar 1, 2023", amount: 100, cardType: "Debit Card", status: "Success" },
     { id: "#15367", date: "Jan 26, 2023", amount: 300, cardType: "Credit Card", status: "Success" },
-    { id: "#12436", date: "Feb 12, 2023", amount: 100, cardType: "Credit Card", status: "Success" }
+    { id: "#12436", date: "Feb 12, 2023", amount: 100, cardType: "Credit Card", status: "Success" },
   ]);
 
   const handleInputChange = (e) => {
@@ -30,52 +27,121 @@ const PaymentHistory = () => {
   };
 
   const handleDelete = (id) => {
-    const updatedData = data.filter((payment) => payment.id !== id);
-    setData(updatedData);
-
-     // If the deleted row was the expanded row, collapse it
-     if (expandedRow !== null && data.findIndex((payment) => payment.id === id) === expandedRow) {
+    setData(data.filter((payment) => payment.id !== id));
+    if (expandedRow !== null && data.findIndex((payment) => payment.id === id) === expandedRow) {
       setExpandedRow(null);
     }
-    
   };
 
-  useEffect(() => {
-    import("bootstrap").then(({ Tooltip }) => {
-      document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((tooltipTrigger) => {
-        new Tooltip(tooltipTrigger);
-      });
-    });
-  }, [data]);
+  const handleAddPayment = () => {
+    if (!newPayment.id || !newPayment.date || !newPayment.amount || !newPayment.cardType) {
+      alert("Please fill all fields before confirming.");
+      return;
+    }
+
+    setLoading(true); // Show spinner and start the process
+    setPaymentStatus("Verifying...");
+
+    // Simulate API verification process
+    setTimeout(() => {
+      setPaymentStatus("Pending");
+
+      setTimeout(() => {
+        setPaymentStatus("Success");
+
+        setTimeout(() => {
+          const paymentToAdd = { ...newPayment, status: "Success" };
+          setData([...data, paymentToAdd]); // Add payment to table
+          setShowForm(false); // Close the form
+
+          // Reset form fields
+          setNewPayment({
+            id: "",
+            date: "",
+            amount: "",
+            cardType: "",
+            status: "Pending",
+          });
+
+          setLoading(false); // Hide loader
+          setPaymentStatus("Pending"); // Reset default status
+        }, 1000);
+      }, 2000);
+    }, 2000);
+  };
 
   return (
     <div className="container-fluid mt-4 payment-history-container">
       <div className="d-flex justify-content-between align-items-center">
-        <h1 style={{ color: "rgba(14, 39, 82, 1)" }}>Payment History</h1>
+        <h1 style={{ color: "rgba(14, 39, 82, 1)", marginBottom: "95px" }}>
+          Payment History
+        </h1>
         <button
-          className="btn"
-          onClick={() => setShowForm(true)}
-          style={{ backgroundColor: "rgba(14, 39, 82, 1)", color: "white" }}
-        >
-          New Payment
-        </button>
+  className="btn btn-sm px-3 py-2 fw-bold"
+  onClick={() => setShowForm(true)}
+  style={{
+    backgroundColor: "rgba(14, 39, 82, 1)",
+    color: "white",
+    fontSize: "clamp(13px, 4vw, 15px)", // Slightly smaller font
+    width: "auto", // Prevents it from stretching too much
+    minWidth: "100px", // Ensures it stays readable
+    borderRadius:"8px"
+  }}
+>
+  New Payment
+</button>
+
       </div>
 
       {showForm ? (
         <div className="full-screen-modal">
-          <div className="payment-form-container">
+      <div className="payment-form-container mx-auto p-4" style={{ maxWidth: "90%", width: "600px" }}>
+
+
             <h3>Enter Payment Details</h3>
             <input type="text" name="id" placeholder="Patient ID" onChange={handleInputChange} />
             <input type="date" name="date" onChange={handleInputChange} />
             <input type="number" name="amount" placeholder="Amount (₹)" onChange={handleInputChange} />
-            <select name="cardType" onChange={handleInputChange}>
-              <option value="" disabled selected>Select Payment Method</option>
-              <option value="Credit Card">Credit Card</option>
-              <option value="Debit Card">Debit Card</option>
-              <option value="Bank Transfer">Bank Transfer</option>
-            </select>
-            <button className="btn btn-success mx-3">Confirm Payment</button>
-            <button className="btn btn-danger" onClick={() => setShowForm(false)}>Cancel</button>
+            <select name="cardType" value={newPayment.cardType} onChange={handleInputChange}>
+  <option value="" disabled>
+    Select Payment Method
+  </option>
+  <option value="Credit Card">Credit Card</option>
+  <option value="Debit Card">Debit Card</option>
+  <option value="Bank Transfer">Bank Transfer</option>
+</select>
+
+
+            {loading ? (
+              <div className="status-container d-flex flex-column align-items-center">
+                {paymentStatus === "Success" ? (
+                  <div className="success-icon text-success fs-1">✅</div>
+                ) : (
+                  <div
+                    className={`spinner-border ${
+                      paymentStatus === "Verifying..."
+                        ? "text-primary"
+                        : paymentStatus === "Pending"
+                        ? "text-warning"
+                        : "text-primary"
+                    }`}
+                    role="status"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                )}
+                <p className="mt-2 fw-bold">{paymentStatus}</p>
+              </div>
+            ) : (
+              <>
+                <button className="btn btn-success mx-3" style={{ marginBottom: "6px" }} onClick={handleAddPayment}>
+                  Confirm Payment
+                </button>
+                <button className="btn btn-danger" onClick={() => setShowForm(false)}>
+                  Cancel
+                </button>
+              </>
+            )}
           </div>
         </div>
       ) : (
@@ -86,10 +152,10 @@ const PaymentHistory = () => {
                 <th>Patient ID</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th className="d-none d-md-table-cell">Payment Method</th> {/* Hidden on mobile */}
-                <th className="d-none d-md-table-cell">Status</th> {/* Hidden on mobile */}
-                <th className="d-none d-md-table-cell">Action</th> {/* Hidden on mobile */}
-                <th className="d-md-none">Details</th> {/* Arrow for mobile */}
+                <th className="d-none d-md-table-cell">Payment Method</th>
+                <th className="d-none d-md-table-cell">Status</th>
+                <th className="d-none d-md-table-cell">Action</th>
+                <th className="d-md-none">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -99,7 +165,7 @@ const PaymentHistory = () => {
                     <td>{payment.id}</td>
                     <td>{payment.date}</td>
                     <td>₹{payment.amount}</td>
-                    <td className="d-none d-md-table-cell">{payment.cardType}</td> {/* Hidden on mobile */}
+                    <td className="d-none d-md-table-cell">{payment.cardType}</td>
                     <td className="d-none d-md-table-cell">
                       <span className={`badge ${payment.status === "Success" ? "bg-success" : "bg-warning"}`}>
                         {payment.status}
@@ -109,20 +175,22 @@ const PaymentHistory = () => {
                       <button className="btn btn-danger btn-sm" onClick={() => handleDelete(payment.id)}>🗑</button>
                     </td>
                     <td className="d-md-none">
-                      <button className="btn btn-light btn-sm" onClick={() => toggleRow(index)}>
-                      {expandedRow === index ? "←" : "→"} {/* Change icon based on expanded state */}
+                      <button className="btn btn-light btn-sm" onClick={() => setExpandedRow(expandedRow === index ? null : index)}>
+                        {expandedRow === index ? "←" : "→"}
                       </button>
                     </td>
                   </tr>
-
                   {expandedRow === index && (
                     <tr className="d-md-none">
                       <td colSpan="6">
                         <div className="expanded-details">
                           <p><strong>Payment Method:</strong> {payment.cardType}</p>
                           <p><strong>Status:</strong> {payment.status}</p>
-                          <p><strong>Action:</strong>
-                            <button className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(payment.id)}>🗑 Delete</button>
+                          <p>
+                            <strong>Action:</strong>
+                            <button className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(payment.id)}>
+                              🗑 Delete
+                            </button>
                           </p>
                         </div>
                       </td>

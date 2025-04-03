@@ -58,7 +58,7 @@ function AppContent({ isSidebarOpen, setIsSidebarOpen }) {
         {/* Main Content */}
         <main
           className="col-md-9 col-lg-10 p-4 d-flex flex-column flex-grow-1 offset-md-3 offset-lg-2"
-          style={{ overflowY: "auto", minHeight: "100vh" }}
+          style={{ overflowY: "auto", minHeight: "100vh",marginTop:"60px" }} 
         >
           <Routes>
             <Route path="/" element={<Profile />} />
