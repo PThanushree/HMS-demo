@@ -31,13 +31,15 @@ function AppContent({ isSidebarOpen, setIsSidebarOpen }) {
   return (
     <div className="container-fluid vh-100 d-flex flex-column">
       <div className="row flex-grow-1">
+
         {/* Sidebar Toggle Button */}
         <button
-          className="btn btn-dark d-md-none position-fixed top-0 start-0 m-2"
-          onClick={() => setIsSidebarOpen(true)}
-        >
-          <FaBars size={24} />
-        </button>
+  className="btn btn-dark d-md-none position-fixed top-0 start-0 m-2"
+  style={{ width: "auto", padding: "0.5rem", zIndex: 1050 }}
+  onClick={() => setIsSidebarOpen(true)}
+>
+  <FaBars size={24} />
+</button>
         
         {/* Sidebar */}
         <nav
@@ -57,8 +59,8 @@ function AppContent({ isSidebarOpen, setIsSidebarOpen }) {
         
         {/* Main Content */}
         <main
-          className="col-md-9 col-lg-10 p-4 d-flex flex-column flex-grow-1 offset-md-3 offset-lg-2"
-          style={{ overflowY: "auto", minHeight: "100vh",marginTop:"60px" }} 
+           className="col-md-9 col-lg-10 p-4 d-flex flex-column flex-grow-1 offset-md-3 offset-lg-2"
+          // className="p-4 flex flex-col flex-grow"
         >
           <Routes>
             <Route path="/" element={<Profile />} />

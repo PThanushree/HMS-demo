@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEdit, FaSave } from "react-icons/fa"; // Import icons
 import "./Dashboard.css";
 import Profileimg from "./assets/profile-icon.png.jpg";
+import MedicalLogo from "./assets/Medical-logo.jpg";
 
 function Profile() {
   const [profile, setProfile] = useState({
@@ -11,8 +12,8 @@ function Profile() {
     id: "01PT852oC",
     phone: "598721344xx",
     address: "City Name",
-    age:"35",
-    bloodGrp:"O+"
+    age: "35",
+    bloodGrp: "O+",
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -25,19 +26,40 @@ function Profile() {
     <div className="container-fluid p-3 vh-100 d-flex flex-column">
       {/* Profile Header */}
       <div className="header d-flex align-items-center mb-4">
+
+      <div className="Hsptl-logo mt-2">
+              <img
+                src={MedicalLogo}
+                alt="Hospital Logo"
+                style={{ height: "70px", objectFit: "contain" }}
+              />
+            </div>
+
+
+
         <div className="user-profile d-flex align-items-center">
           <div className="profile-img me-2">{profile.name.charAt(0)}</div>
           <div className="user-info">
-            <div className="user-name"  style={{fontWeight:"normal",fontSize:"14px"}}>{profile.name}</div>
+            <div
+              className="user-name"
+              style={{ fontWeight: "normal", fontSize: "14px" }}
+            >
+              {profile.name}
+            </div>
             <div className="user-role">{profile.role}</div>
           </div>
         </div>
       </div>
 
       {/* Main Profile Section */}
-      <div className="d-flex justify-content-center flex-grow-1" style={{ overflowY: "auto" }}>
+      <div className="d-flex justify-content-center flex-grow-1">
         <div className="profile-container p-4 border rounded shadow-sm bg-white d-flex flex-column">
-          <h3 className="text-center mb-3" style={{color: "rgba(20, 50, 100, 1)"}}>Patient Detail</h3>
+          <h3
+            className="text-center mb-3"
+            style={{ color: "rgba(20, 50, 100, 1)" }}
+          >
+            Patient Detail
+          </h3>
 
           {/* Profile Image & Edit Button */}
           <div className="profile-img-container">
@@ -100,8 +122,7 @@ function Profile() {
                   className="form-control mb-2"
                 />
 
-                
-         <label className="form-label">Age</label>
+                <label className="form-label">Age</label>
                 <input
                   type="text"
                   name="age"
@@ -110,8 +131,7 @@ function Profile() {
                   className="form-control mb-2"
                 />
 
-                
-         <label className="form-label">Blood Group</label>
+                <label className="form-label">Blood Group</label>
                 <input
                   type="text"
                   name="bloodGrp"
@@ -122,13 +142,27 @@ function Profile() {
               </>
             ) : (
               <>
-                <div className="mb-2"><strong>Patient Name:</strong> {profile.name}</div>
-                <div className="mb-2"><strong>Date of Birth:</strong> {profile.dob}</div>
-                <div className="mb-2"><strong>Patient ID:</strong> {profile.id}</div>
-                <div className="mb-2"><strong>Contact Number:</strong> {profile.phone}</div>
-                <div className="mb-2"><strong>Residential Address:</strong> {profile.address}</div>
-                <div className="mb-2"><strong>Age:</strong> {profile.age}</div>
-                <div className="mb-2"><strong>Blood Group:</strong> {profile.bloodGrp}</div>
+                <div className="mb-2">
+                  <strong>Patient Name:</strong> {profile.name}
+                </div>
+                <div className="mb-2">
+                  <strong>Date of Birth:</strong> {profile.dob}
+                </div>
+                <div className="mb-2">
+                  <strong>Patient ID:</strong> {profile.id}
+                </div>
+                <div className="mb-2">
+                  <strong>Contact Number:</strong> {profile.phone}
+                </div>
+                <div className="mb-2">
+                  <strong>Residential Address:</strong> {profile.address}
+                </div>
+                <div className="mb-2">
+                  <strong>Age:</strong> {profile.age}
+                </div>
+                <div className="mb-2">
+                  <strong>Blood Group:</strong> {profile.bloodGrp}
+                </div>
               </>
             )}
           </div>
