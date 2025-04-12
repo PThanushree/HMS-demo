@@ -111,7 +111,7 @@ const PaymentHistory = () => {
   <option value="Bank Transfer">Bank Transfer</option>
 </select>
 
-
+{/* 
             {loading ? (
               <div className="status-container d-flex flex-column align-items-center">
                 {paymentStatus === "Success" ? (
@@ -134,14 +134,76 @@ const PaymentHistory = () => {
               </div>
             ) : (
               <>
-                <button className="btn btn-success mx-3" style={{ marginBottom: "6px" }} onClick={handleAddPayment}>
-                  Confirm Payment
-                </button>
-                <button className="btn btn-danger" onClick={() => setShowForm(false)}>
-                  Cancel
-                </button>
+                // <button className="btn btn-success mx-3" style={{ marginBottom: "6px" }} onClick={handleAddPayment}>
+                //   Confirm Payment
+                // </button>
+                // <button className="btn btn-danger" onClick={() => setShowForm(false)}>
+                //   Cancel
+                // </button>
               </>
-            )}
+            )} */}
+            {showForm && (
+  <div className="full-screen-modal">
+    <div className="payment-form-container mx-auto p-4" style={{ maxWidth: "90%", width: "600px" }}>
+      <h3 className="mb-4">Enter Payment Details</h3>
+
+      <input
+        type="text"
+        name="id"
+        placeholder="Patient ID"
+        onChange={handleInputChange}
+        className="form-control mb-3"
+      />
+
+      <input
+        type="date"
+        name="date"
+        onChange={handleInputChange}
+        className="form-control mb-3"
+      />
+
+      <input
+        type="number"
+        name="amount"
+        placeholder="Amount (₹)"
+        onChange={handleInputChange}
+        className="form-control mb-3"
+      />
+
+      <select
+        name="cardType"
+        value={newPayment.cardType}
+        onChange={handleInputChange}
+        className="form-control mb-4"
+      >
+        <option value="" disabled>Select Payment Method</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Debit Card">Debit Card</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+      </select>
+
+      <div className="d-flex justify-content-center">
+        <button
+          className="btn btn-success mx-3"
+          onClick={() => {
+            handleAddPayment();
+            setShowForm(false);
+          }}
+        >
+          Confirm Payment
+        </button>
+
+        <button
+          className="btn btn-danger"
+          onClick={() => setShowForm(false)}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
           </div>
         </div>
       ) : (
@@ -154,7 +216,7 @@ const PaymentHistory = () => {
                 <th>Amount</th>
                 <th className="d-none d-md-table-cell">Payment Method</th>
                 <th className="d-none d-md-table-cell">Status</th>
-                <th className="d-none d-md-table-cell">Action</th>
+                
                 <th className="d-md-none">Details</th>
               </tr>
             </thead>
@@ -171,9 +233,7 @@ const PaymentHistory = () => {
                         {payment.status}
                       </span>
                     </td>
-                    <td className="d-none d-md-table-cell">
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(payment.id)}>🗑</button>
-                    </td>
+                    
                     <td className="d-md-none">
                       <button className="btn btn-light btn-sm" onClick={() => setExpandedRow(expandedRow === index ? null : index)}>
                         {expandedRow === index ? "←" : "→"}
@@ -186,12 +246,7 @@ const PaymentHistory = () => {
                         <div className="expanded-details">
                           <p><strong>Payment Method:</strong> {payment.cardType}</p>
                           <p><strong>Status:</strong> {payment.status}</p>
-                          <p>
-                            <strong>Action:</strong>
-                            <button className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(payment.id)}>
-                              🗑 Delete
-                            </button>
-                          </p>
+                         
                         </div>
                       </td>
                     </tr>
