@@ -1,0 +1,651 @@
+"use client"
+
+import { useState } from "react"
+import { Bell, Calendar, ChevronDown, Heart, Menu, Search, User, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export default function HospitalLandingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const specializations = [
+    {
+      name: "Cardiology",
+      doctors: [
+        { name: "Dr. Sarah Johnson", image: "/placeholder.svg?height=80&width=80" },
+        { name: "Dr. Michael Chen", image: "/placeholder.svg?height=80&width=80" },
+      ],
+    },
+    {
+      name: "Neurology",
+      doctors: [
+        { name: "Dr. David Williams", image: "/placeholder.svg?height=80&width=80" },
+        { name: "Dr. Emily Rodriguez", image: "/placeholder.svg?height=80&width=80" },
+      ],
+    },
+    {
+      name: "Pediatrics",
+      doctors: [
+        { name: "Dr. Jessica Lee", image: "/placeholder.svg?height=80&width=80" },
+        { name: "Dr. Robert Taylor", image: "/placeholder.svg?height=80&width=80" },
+      ],
+    },
+    {
+      name: "Orthopedics",
+      doctors: [
+        { name: "Dr. James Wilson", image: "/placeholder.svg?height=80&width=80" },
+        { name: "Dr. Maria Garcia", image: "/placeholder.svg?height=80&width=80" },
+      ],
+    },
+  ]
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center">
+          <div className="mr-4 flex">
+            <a href="#" className="flex items-center space-x-2">
+              <Heart className="h-6 w-6 text-teal-600" />
+              <span className="text-xl font-bold">MediCare</span>
+            </a>
+          </div>
+          <nav className="hidden md:flex md:flex-1 md:items-center md:justify-center">
+            <ul className="flex space-x-6">
+              <li>
+                <a href="#" className="text-sm font-medium transition-colors hover:text-teal-600">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="text-sm font-medium transition-colors hover:text-teal-600">
+                  Services
+                </a>
+              </li>
+              <li className="relative group">
+                <a
+                  href="#doctors"
+                  className="flex items-center text-sm font-medium transition-colors hover:text-teal-600"
+                >
+                  Doctors <ChevronDown className="ml-1 h-4 w-4" />
+                </a>
+                <div className="absolute left-0 top-full z-50 mt-2 hidden w-[600px] rounded-md border bg-white p-4 shadow-lg group-hover:block">
+                  <div className="grid grid-cols-2 gap-4">
+                    {specializations.map((specialization) => (
+                      <div key={specialization.name} className="space-y-2">
+                        <h3 className="font-medium text-teal-600">{specialization.name}</h3>
+                        <div className="space-y-2">
+                          {specialization.doctors.map((doctor) => (
+                            <div key={doctor.name} className="flex items-center space-x-2">
+                              <img
+                                src={doctor.image || "/placeholder.svg"}
+                                alt={doctor.name}
+                                className="h-10 w-10 rounded-full object-cover"
+                              />
+                              <div>
+                                <p className="text-sm font-medium">{doctor.name}</p>
+                                <Button variant="link" size="sm" className="h-auto p-0 text-xs text-teal-600">
+                                  Book Consultation
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a href="#about" className="text-sm font-medium transition-colors hover:text-teal-600">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="text-sm font-medium transition-colors hover:text-teal-600">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div className="ml-auto flex items-center space-x-4">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  Login
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Login to your account</DialogTitle>
+                  <DialogDescription>Enter your credentials to access your patient or staff account.</DialogDescription>
+                </DialogHeader>
+                <Tabs defaultValue="patient" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="patient">Patient</TabsTrigger>
+                    <TabsTrigger value="staff">Staff</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="patient" className="space-y-4 pt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="patient-email">Email</Label>
+                      <Input id="patient-email" placeholder="Enter your email" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="patient-password">Password</Label>
+                      <Input id="patient-password" type="password" placeholder="Enter your password" />
+                    </div>
+                    <Button className="w-full bg-teal-600 hover:bg-teal-700">Login</Button>
+                  </TabsContent>
+                  <TabsContent value="staff" className="space-y-4 pt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="staff-id">Staff ID</Label>
+                      <Input id="staff-id" placeholder="Enter your staff ID" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="staff-password">Password</Label>
+                      <Input id="staff-password" type="password" placeholder="Enter your password" />
+                    </div>
+                    <Button className="w-full bg-teal-600 hover:bg-teal-700">Login</Button>
+                  </TabsContent>
+                </Tabs>
+              </DialogContent>
+            </Dialog>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="sm" className="bg-teal-600 hover:bg-teal-700">
+                  Sign Up
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Create an account</DialogTitle>
+                  <DialogDescription>Register as a new patient to access our online services.</DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="first-name">First name</Label>
+                      <Input id="first-name" placeholder="Enter your first name" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="last-name">Last name</Label>
+                      <Input id="last-name" placeholder="Enter your last name" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="Enter your email" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input id="password" type="password" placeholder="Create a password" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <Input id="confirm-password" type="password" placeholder="Confirm your password" />
+                  </div>
+                  <Button className="w-full bg-teal-600 hover:bg-teal-700">Create Account</Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+        </div>
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="container md:hidden">
+            <nav className="flex flex-col space-y-4 py-4">
+              <a href="#" className="text-sm font-medium transition-colors hover:text-teal-600">
+                Home
+              </a>
+              <a href="#services" className="text-sm font-medium transition-colors hover:text-teal-600">
+                Services
+              </a>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex w-full justify-start p-0 font-medium">
+                    Doctors <ChevronDown className="ml-1 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56">
+                  {specializations.map((specialization) => (
+                    <DropdownMenuItem key={specialization.name}>
+                      <span>{specialization.name}</span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <a href="#about" className="text-sm font-medium transition-colors hover:text-teal-600">
+                About
+              </a>
+              <a href="#contact" className="text-sm font-medium transition-colors hover:text-teal-600">
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
+      </header>
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative">
+          <div className="container flex flex-col items-center justify-center space-y-4 py-24 text-center md:py-32">
+            <div className="absolute inset-0 -z-10 bg-[url('/placeholder.svg?height=600&width=1200')] bg-cover bg-center opacity-10"></div>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              Your Health Is Our <span className="text-teal-600">Priority</span>
+            </h1>
+            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+              Advanced healthcare with a personal touch. Our team of specialists is dedicated to providing exceptional
+              care for you and your family.
+            </p>
+            <div className="flex flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+                Book Appointment
+              </Button>
+              <Button size="lg" variant="outline">
+                Our Services
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" className="bg-slate-50 py-16 md:py-24">
+  <div className="container">
+    <div className="mb-12 text-center">
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our Specialties & Services</h2>
+      <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
+        Comprehensive healthcare services designed to meet all your medical needs with cutting-edge technology and expert care.
+      </p>
+    </div>
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        {
+          icon: <Heart className="h-10 w-10 text-teal-600" />,
+          title: "Cardiology",
+          description:
+            "Expert care for heart conditions with state-of-the-art diagnostic and treatment options. Our cardiologists specialize in preventive care, interventional procedures, and cardiac rehabilitation.",
+        },
+        {
+          icon: <Bell className="h-10 w-10 text-teal-600" />,
+          title: "Emergency Care",
+          description: "24/7 emergency services with rapid response teams ready to provide immediate care. Our ER is equipped with the latest technology to handle all types of medical emergencies.",
+        },
+        {
+          icon: <Calendar className="h-10 w-10 text-teal-600" />,
+          title: "Pediatrics",
+          description: "Specialized care for infants, children, and adolescents. Our pediatricians provide comprehensive services from routine check-ups to treatment for complex conditions in a child-friendly environment.",
+        },
+        {
+          icon: <Search className="h-10 w-10 text-teal-600" />,
+          title: "Diagnostics & Imaging",
+          description:
+            "Comprehensive testing and imaging services including X-rays, MRI, CT scans, ultrasound, and laboratory services for accurate diagnosis and treatment planning.",
+        },
+        {
+          icon: <User className="h-10 w-10 text-teal-600" />,
+          title: "Orthopedics",
+          description: "Specialized care for bone and joint conditions, sports injuries, and musculoskeletal disorders. Our orthopedic surgeons offer both surgical and non-surgical treatment options.",
+        },
+        {
+          icon: <Heart className="h-10 w-10 text-teal-600" />,
+          title: "Rehabilitation",
+          description:
+            "Comprehensive physical therapy and rehabilitation programs to help patients recover from injuries, surgeries, and chronic conditions to regain functionality and improve quality of life.",
+        },
+        {
+          icon: <Bell className="h-10 w-10 text-teal-600" />,
+          title: "Neurology",
+          description: "Specialized care for disorders of the brain, spine, and nervous system. Our neurologists diagnose and treat conditions like stroke, epilepsy, multiple sclerosis, and Parkinson's disease.",
+        },
+        {
+          icon: <Calendar className="h-10 w-10 text-teal-600" />,
+          title: "Obstetrics & Gynecology",
+          description: "Comprehensive women's health services including prenatal care, labor and delivery, gynecological surgeries, and preventive care throughout all stages of life.",
+        },
+        {
+          icon: <Search className="h-10 w-10 text-teal-600" />,
+          title: "Mental Health",
+          description: "Compassionate care for mental health conditions with services including counseling, therapy, and psychiatric treatment in a supportive and confidential environment.",
+        },
+      ].map((service, index) => (
+        <div
+          key={index}
+          className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm transition-all hover:shadow-md"
+        >
+          <div className="mb-4">{service.icon}</div>
+          <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
+          <p className="text-muted-foreground">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+        {/* Doctors Section */}
+        <section id="doctors" className="py-16 md:py-24">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our Specialists</h2>
+              <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
+                Meet our team of experienced doctors dedicated to providing the highest quality of care.
+              </p>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  name: "Dr. Sarah Johnson",
+                  specialty: "Cardiology",
+                  image: "/placeholder.svg?height=300&width=300",
+                },
+                {
+                  name: "Dr. Michael Chen",
+                  specialty: "Neurology",
+                  image: "/placeholder.svg?height=300&width=300",
+                },
+                {
+                  name: "Dr. Emily Rodriguez",
+                  specialty: "Pediatrics",
+                  image: "/placeholder.svg?height=300&width=300",
+                },
+                {
+                  name: "Dr. James Wilson",
+                  specialty: "Orthopedics",
+                  image: "/placeholder.svg?height=300&width=300",
+                },
+              ].map((doctor, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm transition-all hover:shadow-md"
+                >
+                  <img
+                    src={doctor.image || "/placeholder.svg"}
+                    alt={doctor.name}
+                    className="mx-auto mb-4 h-40 w-40 rounded-full object-cover"
+                  />
+                  <h3 className="mb-1 text-center text-xl font-bold">{doctor.name}</h3>
+                  <p className="mb-4 text-center text-muted-foreground">{doctor.specialty}</p>
+                  <Button className="w-full bg-teal-600 hover:bg-teal-700">Book Consultation</Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="testimonials" className="bg-slate-50 py-16 md:py-24">
+  <div className="container">
+    <div className="mb-12 text-center">
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Patient Feedback</h2>
+      <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
+        Hear what our patients have to say about their experience with our hospital and share your own story.
+      </p>
+    </div>
+    <div className="grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 className="mb-6 text-2xl font-bold">Patient Testimonials</h3>
+        <div className="space-y-6">
+          {[
+            {
+              quote:
+                "The care I received was exceptional. The doctors were knowledgeable and took the time to explain everything to me. I felt supported throughout my entire treatment journey.",
+              name: "John Smith",
+              role: "Cardiac Patient",
+              image: "/placeholder.svg?height=60&width=60",
+            },
+            {
+              quote:
+                "From the moment I walked in, I felt welcomed. The staff was friendly and the facilities were clean and modern. My surgery went smoothly and the follow-up care was excellent.",
+              name: "Maria Lopez",
+              role: "Orthopedic Patient",
+              image: "/placeholder.svg?height=60&width=60",
+            },
+            {
+              quote:
+                "I was nervous about my procedure, but the team made me feel comfortable and supported throughout the entire process. The nurses were attentive and the doctors were thorough.",
+              name: "Robert Johnson",
+              role: "Neurology Patient",
+              image: "/placeholder.svg?height=60&width=60",
+            },
+          ].map((testimonial, index) => (
+            <div key={index} className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+              <div className="flex items-start space-x-4">
+                <img
+                  src={testimonial.image || "/placeholder.svg"}
+                  alt={testimonial.name}
+                  className="h-12 w-12 rounded-full object-cover"
+                />
+                <div>
+                  <p className="mb-2 italic text-muted-foreground">{testimonial.quote}</p>
+                  <div>
+                    <p className="font-bold">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 className="mb-6 text-2xl font-bold">Share Your Experience</h3>
+        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="feedback-name">Your Name</Label>
+              <Input id="feedback-name" placeholder="Enter your name" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="feedback-email">Email</Label>
+              <Input id="feedback-email" type="email" placeholder="Enter your email" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="feedback-department">Department You Visited</Label>
+              <select
+                id="feedback-department"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <option value="">Select a department</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="neurology">Neurology</option>
+                <option value="pediatrics">Pediatrics</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="emergency">Emergency</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="rating">Your Rating</Label>
+              <div className="flex space-x-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    className="text-2xl text-yellow-400 hover:text-yellow-500 focus:outline-none"
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="feedback-message">Your Feedback</Label>
+              <textarea
+                id="feedback-message"
+                className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Share your experience with us"
+              ></textarea>
+            </div>
+            <Button className="w-full bg-teal-600 hover:bg-teal-700">Submit Feedback</Button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        {/* About Section */}
+        <section id="about" className="py-16 md:py-24">
+  <div className="container">
+    <div className="mb-12 text-center">
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">About Us</h2>
+      <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
+        Learn about our history, mission, and commitment to healthcare excellence.
+      </p>
+    </div>
+    <div className="grid gap-12 md:grid-cols-2 md:items-center">
+      <div>
+        <img
+          src="/placeholder.svg?height=400&width=600"
+          alt="Hospital Building"
+          className="rounded-lg object-cover"
+        />
+      </div>
+      <div>
+        <h3 className="mb-4 text-xl font-bold">Our Story</h3>
+        <p className="mb-4 text-muted-foreground">
+          Founded in 1985, MediCare Hospital has been providing exceptional healthcare services to our community
+          for over 35 years. What started as a small clinic with just 10 beds has grown into a comprehensive
+          medical center with state-of-the-art facilities and over 200 beds.
+        </p>
+        <h3 className="mb-4 text-xl font-bold">Our Mission</h3>
+        <p className="mb-4 text-muted-foreground">
+          Our mission is to deliver compassionate, high-quality care to every patient. We are committed to
+          improving the health and wellbeing of the people we serve through excellence in medicine, education,
+          and research.
+        </p>
+        <h3 className="mb-4 text-xl font-bold">Our Values</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="rounded-lg border p-4">
+            <p className="font-bold text-teal-600">Compassion</p>
+            <p className="text-sm text-muted-foreground">We treat each patient with kindness and empathy</p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="font-bold text-teal-600">Excellence</p>
+            <p className="text-sm text-muted-foreground">We strive for the highest standards in healthcare</p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="font-bold text-teal-600">Innovation</p>
+            <p className="text-sm text-muted-foreground">We embrace new technologies and approaches</p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="font-bold text-teal-600">Integrity</p>
+            <p className="text-sm text-muted-foreground">We act with honesty and transparency</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="mt-12 grid gap-8 sm:grid-cols-4">
+      <div className="rounded-lg border p-6 text-center">
+        <p className="text-3xl font-bold text-teal-600">200+</p>
+        <p className="text-sm text-muted-foreground">Qualified Doctors</p>
+      </div>
+      <div className="rounded-lg border p-6 text-center">
+        <p className="text-3xl font-bold text-teal-600">50k+</p>
+        <p className="text-sm text-muted-foreground">Patients Served</p>
+      </div>
+      <div className="rounded-lg border p-6 text-center">
+        <p className="text-3xl font-bold text-teal-600">30+</p>
+        <p className="text-sm text-muted-foreground">Specializations</p>
+      </div>
+      <div className="rounded-lg border p-6 text-center">
+        <p className="text-3xl font-bold text-teal-600">24/7</p>
+        <p className="text-sm text-muted-foreground">Emergency Care</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+        {/* Contact Section */}
+        <section id="contact" className="bg-slate-50 py-16 md:py-24">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Contact Us</h2>
+              <p className="mt-4 max-w-[700px] mx-auto text-muted-foreground">
+                Have questions or need to schedule an appointment? Reach out to us.
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div className="space-y-6">
+                <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+                  <h3 className="mb-4 text-xl font-bold">Book an Appointment</h3>
+                  <form className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="first-name-contact">First name</Label>
+                        <Input id="first-name-contact" placeholder="Enter your first name" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="last-name-contact">Last name</Label>
+                        <Input id="last-name-contact" placeholder="Enter your last name" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email-contact">Email</Label>
+                      <Input id="email-contact" type="email" placeholder="Enter your email" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone-contact">Phone</Label>
+                      <Input id="phone-contact" placeholder="Enter your phone number" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="department-contact">Department</Label>
+                      <select
+                        id="department-contact"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="">Select a department</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="orthopedics">Orthopedics</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message-contact">Message</Label>
+                      <textarea
+                        id="message-contact"
+                        className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Briefly describe your reason for appointment"
+                      ></textarea>
+                    </div>
+                    <Button className="w-full bg-teal-600 hover:bg-teal-700">Submit Request</Button>
+                  </form>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+                  <h3 className="mb-4 text-xl font-bold">Contact Information</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="rounded-full bg-teal-100 p-2 text-teal-600">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-5 w-5"
+                        >
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 \

@@ -16,15 +16,18 @@ const PaymentHistory = () => {
     status: "Pending",
   });
 
+
   const [data, setData] = useState([
     { id: "#15267", date: "Mar 1, 2023", amount: 100, cardType: "Debit Card", status: "Success" },
     { id: "#15367", date: "Jan 26, 2023", amount: 300, cardType: "Credit Card", status: "Success" },
     { id: "#12436", date: "Feb 12, 2023", amount: 100, cardType: "Credit Card", status: "Success" },
   ]);
 
+
   const handleInputChange = (e) => {
     setNewPayment({ ...newPayment, [e.target.name]: e.target.value });
   };
+  
 
   const handleDelete = (id) => {
     setData(data.filter((payment) => payment.id !== id));
