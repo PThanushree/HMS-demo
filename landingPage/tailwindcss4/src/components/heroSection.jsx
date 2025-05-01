@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import medicalBg from '../assets/medical-bg5.jpg';
+
 
 
 
@@ -85,53 +85,22 @@ export default function heroSection() {
 
       {/* Hero Section */}
       <section id="home" className="py-0 px-0">
-  <Swiper
-    modules={[Pagination, Autoplay]}
-    pagination={{ clickable: true }}
-    autoplay={{ delay: 3000, disableOnInteraction: false }}
-    loop={true}
-    className="w-full"
+  <div
+    className="h-[500px] bg-cover  flex items-center justify-center text-white"
+    style={{
+      backgroundImage: `url('/assets/medical-bg2.jpg')`,
+      backgroundSize: 'cover', // Ensure the image covers the whole screen
+      backgroundPosition: 'center center', // Ensure the image is centered
+    }}
   >
-    {/* Slide 1 */}
-    <SwiperSlide>
-      <div
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: `url('/assets/medical-bg5.jpg')` }}
-      >
-        <div className="bg-black bg-opacity-50 p-6 rounded-lg text-center">
-          <h1 className="text-4xl font-bold mb-4">Your Health, Our Priority</h1>
-          <p className="text-lg">Comprehensive care from the best medical professionals</p>
-        </div>
-      </div>
-    </SwiperSlide>
-
-    {/* Slide 2 */}
-    <SwiperSlide>
-      <div
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: `url('/assets/doctors.jpg')` }}
-      >
-        <div className="bg-black bg-opacity-50 p-6 rounded-lg text-center">
-          <h1 className="text-4xl font-bold mb-4">Expert Doctors at Your Service</h1>
-          <p className="text-lg">Get treated by top-tier specialists in every field.</p>
-        </div>
-      </div>
-    </SwiperSlide>
-
-    {/* Slide 3 */}
-    <SwiperSlide>
-      <div
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: `url('/assets/emergency.jpg')` }}
-      >
-        <div className="bg-black bg-opacity-50 p-6 rounded-lg text-center">
-          <h1 className="text-4xl font-bold mb-4">24/7 Emergency Support</h1>
-          <p className="text-lg">We’re always here when you need us most.</p>
-        </div>
-      </div>
-    </SwiperSlide>
-  </Swiper>
+    <div className="bg-opacity-50 p-6 rounded-lg text-center" style={{ backgroundColor: "rgb(43, 60, 91)" }}>
+      <h1 className="text-4xl font-bold mb-4">Your Health, Our Priority</h1>
+      <p className="text-lg">Comprehensive care from the best medical professionals</p>
+    </div>
+  </div>
 </section>
+
+
 
 
       {/* Our Services */}
