@@ -3,6 +3,7 @@ import { Heart, Menu, X } from "lucide-react";
 import { Button } from "./Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -41,9 +42,9 @@ export default function heroSection() {
             <a href="#feedback" className="text-sm hover:text-teal-600">
               Feedback
             </a>
-            <a href="#DoctorsProfile" className="text-sm hover:text-teal-600">
-              Doctor's Profile
-            </a>
+            <Link to="/doctors-profile" className="text-sm hover:text-teal-600">
+  Doctor's Profile
+</Link>
           </nav>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -75,9 +76,9 @@ export default function heroSection() {
               <a href="#feedback" className="text-sm hover:text-teal-600">
                 Feedback
               </a>
-              <a href="#DoctorsProfile" className="text-sm hover:text-teal-600">
-                Doctor's Profile
-              </a>
+              <Link to="/doctors-profile" className="text-sm hover:text-teal-600">
+  Doctor's Profile
+</Link>
             </nav>
           </div>
         )}
@@ -156,6 +157,65 @@ export default function heroSection() {
         </div>
       </section>
 
+
+
+{/*Our Doctors */}
+<section id="services" className="py-16 px-4 bg-white">
+  <div className="max-w-5xl mx-auto text-center">
+    <h2
+      className="text-3xl font-bold mb-8"
+      style={{ color: "rgb(66, 81, 109)" }}
+    >
+      Our Leading Doctors
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {/* Doctor Card */}
+      <div className="p-6 border rounded-xl shadow hover:shadow-md transition text-center">
+        <img
+          src="/assets/medical-bg5.jpg"
+          alt="Dr. John Smith"
+          className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+        />
+        <h3 className="text-xl font-bold mb-1">Dr. John Smith</h3>
+        <p className="text-gray-600 font-semibold">General Physician</p>
+        <p className="text-gray-500 text-sm">
+    Over 15 years of experience in internal medicine, known for accurate diagnosis and patient care.
+  </p>
+      </div>
+
+      <div className="p-6 border rounded-xl shadow hover:shadow-md transition text-center">
+        <img
+          src="/images/doctor2.jpg"
+          alt="Dr. Emily Stone"
+          className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+        />
+        <h3 className="text-xl font-bold mb-1">Dr. Emily Stone</h3>
+        <p className="text-gray-600 font-semibold">Cardiologist</p>
+        <p className="text-gray-500 text-sm">
+    Over 15 years of experience in internal medicine, known for accurate diagnosis and patient care.
+  </p>
+      </div>
+
+      <div className="p-6 border rounded-xl shadow hover:shadow-md transition text-center">
+        <img
+          src="/images/doctor3.jpg"
+          alt="Dr. Rahul Mehta"
+          className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+        />
+        <h3 className="text-xl font-bold mb-1">Dr. Rahul Mehta</h3>
+        <p className="text-gray-600 font-semibold">Radiologist</p>
+        <p className="text-gray-500 text-sm">
+    Over 15 years of experience in internal medicine, known for accurate diagnosis and patient care.
+  </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
       {/* Testimonials */}
       <section id="testimonials" className="py-16 px-4 bg-white">
         <div className="max-w-5xl mx-auto text-center">
@@ -187,7 +247,7 @@ export default function heroSection() {
       {/*Footer */}
       <footer
         className="text-white py-10 px-6"
-        style={{ backgroundColor: "rgb(66, 81, 109)" }}
+        style={{ backgroundColor: "rgb(95, 103, 119)" }}
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-10">
           {/* Feedback Form */}

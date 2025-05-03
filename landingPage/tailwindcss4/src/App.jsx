@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import reactLogo from '../public/assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Landing from './components/heroSection'
-function App() {
-  
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DoctorsPage from "./components/Doctors-profile";
+import Landing from './components/heroSection';
+import './App.css';
+import './index.css';
 
+function App() {
   return (
-    <>
-      <Landing />
-    </>
-  )
+   
+      <Routes> {/* Use Routes for all your routes */}
+        {/* Landing page route */}
+        <Route path="/" element={<Landing />} />
+        
+        {/* Doctors Profile page route */}
+        <Route path="/doctors-profile" element={<DoctorsPage />} />
+      </Routes>
+    
+  );
 }
 
-export default App
+export default App;
