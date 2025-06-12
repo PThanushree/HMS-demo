@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { useState , useEffect} from 'react';
+import BookNowForm from './Booknow-form'
 
 const doctors = [
   {
@@ -41,18 +43,38 @@ const doctors = [
 ];
 
 export default function DoctorsPage() {
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  
+useEffect(() => {
+  if (selectedDoctor) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
+  // Cleanup on unmount
+  return () => {
+    document.body.style.overflow = 'auto';
+  };
+}, [selectedDoctor]);
+
+  const handleBookClick = (doctor) => {
+    setSelectedDoctor(doctor);
+  };
+
+  const handleCloseForm = () => {
+    setSelectedDoctor(null);
+  };
+
   return (
-    <section className="min-h-screen py-16 px-4 bg-gray-50">
-      <div
-  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-[0px_4px_20px_rgba(66,81,109,0.7)] transition text-center my-10"
-  style={{ boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)" }} // Default shadow
->
-        <h2
-          className="text-4xl font-bold text-center mb-12"
-          style={{ color: "rgb(66, 81, 109)" }}
-        >
+    <section className={`min-h-screen py-3 px-4  bg-gray-50`}>
+       <div className={`${selectedDoctor ? 'blur-sm' : ''}`}>
+      <div className="bg-white p-6 rounded-2xl shadow-lg transition text-center " >
+        <h2 className="text-4xl font-bold text-center mb-12" style={{ color: "rgb(66, 81, 109)" }}>
           Meet Our Most Recommended Doctors
         </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
           {doctors.map((doc, index) => (
             <div
@@ -68,16 +90,42 @@ export default function DoctorsPage() {
               <p className="text-gray-600 mb-2">{doc.designation}</p>
               <p className="text-gray-500 text-sm mb-4">{doc.about}</p>
               <button
-  className="mt-auto bg-[rgb(66,81,109)] hover:bg-blue-300 text-white px-4 py-2 rounded-full transition"
->
-  Book Appointment
-</button>
-
-
+                onClick={() => handleBookClick(doc)}
+                className="mt-auto bg-[rgb(66,81,109)] hover:bg-blue-300 text-white px-4 py-2 rounded-full transition"
+              >
+                Book Appointment
+              </button>
             </div>
           ))}
         </div>
       </div>
+      </div>
+
+      {/* Modal Form */}
+    {selectedDoctor && (
+  <div className="fixed inset-0 z-50 bg-[rgb(66,81,109)] bg-opacity-40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div className="bg-white rounded-lg p-8 w-full max-w-2xl relative z-50 max-h-screen overflow-y-auto">
+      <button
+        onClick={handleCloseForm}
+        className="absolute top-4 right-4 text-gray-600 hover:text-black text-2xl font-bold"
+      >
+        ×
+      </button>
+      <h3 className="text-2xl font-bold mb-4 text-center">
+      <span style={{ color: "rgb(66, 81, 109)" }} > Booking appointment with {selectedDoctor.name} 
+      
+      </span>
+      </h3>
+      <BookNowForm onClose={handleCloseForm} />
+    </div>
+  </div>
+)}
+
+
     </section>
   );
 }
+
+
+
+//{selectedDoctor.name}
