@@ -66,8 +66,9 @@ function AppContent({ isSidebarOpen, setIsSidebarOpen }) {
             <Route path="/" element={<Profile />} />
             <Route path="/videoCall" element={<VideoCall />} />
             <Route path="/Billing" element={<Billing />} />
-            <Route path="/medicalHist" element={<MedicalHist />} />
+           
             <Route path="/Prescription" element={<Digital />} />
+            <Route path="/medicalHist" element={<MedicalHist />} />
           </Routes>
         </main>
       </div>
