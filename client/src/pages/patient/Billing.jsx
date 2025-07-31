@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Download } from "lucide-react";
 
@@ -67,21 +68,13 @@ const PaymentHistory = () => {
   };
 
   return (
-    <div className="container mx-auto mt-4">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-blue-800 text-3xl">Payment History</h1>
-        <button
-          className="bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-bold"
-          onClick={() => setShowForm(true)}
-        >
-          New Payment
-        </button>
-      </div>
+    <div className="container mx-auto mt-6">
+      
 
       {showForm ? (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
-            <h3 className="text-lg font-semibold mb-4">Enter Payment Details</h3>
+            <h3 className="text-lg font-semibold mb-4 text-sky-700">Enter Payment Details</h3>
             <input
               type="text"
               name="id"
@@ -136,7 +129,7 @@ const PaymentHistory = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
-            <thead className="bg-gray-800 text-white">
+            <thead className="bg-sky-700 text-white">
               <tr>
                 <th className="py-2 px-4 border">Patient ID</th>
                 <th className="py-2 px-4 border">Date</th>
@@ -155,7 +148,7 @@ const PaymentHistory = () => {
                     <td className="py-2 px-4 border">₹{payment.amount}</td>
                     <td className="hidden md:table-cell py-2 px-4 border">{payment.cardType}</td>
                     <td className="hidden md:table-cell py-2 px-4 border">
-                      <span className={`badge ${payment.status === "Success" ? "bg-green-500" : "bg-yellow-500"}`}>
+                      <span className={`badge ${payment.status === "Success" ? "bg-green-500" : "bg-yellow-500"} text-white px-2 py-1 rounded-md`}>
                         {payment.status}
                       </span>
                     </td>
@@ -171,7 +164,7 @@ const PaymentHistory = () => {
                   {expandedRow === index && (
                     <tr className="md:hidden">
                       <td colSpan="6" className="py-2 px-4 border">
-                        <div className="expanded-details">
+                        <div className="expanded-details text-sm">
                           <p><strong>Payment Method:</strong> {payment.cardType}</p>
                           <p><strong>Status:</strong> {payment.status}</p>
                         </div>
@@ -184,6 +177,14 @@ const PaymentHistory = () => {
           </table>
         </div>
       )}
+      <div className="flex justify-between items-center mb-8 mt-6">
+        <button
+          className="bg-sky-700 hover:bg-sky-800 text-white px-4 py-2 rounded-md text-sm font-bold"
+          onClick={() => setShowForm(true)}
+        >
+          New Payment
+        </button>
+      </div>
     </div>
   );
 };

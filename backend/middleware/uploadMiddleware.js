@@ -1,7 +1,6 @@
-
-
-const multer=require('multer')
-const path=require('path')
+// middleware/uploadMiddleware.js
+import multer from 'multer';
+import path from 'path';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -23,4 +22,4 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-exports. upload = multer({ storage, fileFilter });
+export const upload = multer({ storage, fileFilter });

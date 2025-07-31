@@ -45,28 +45,28 @@ const MedicalHistory = () => {
     <div className="container mx-auto mt-4">
       {/* Patient Info Card */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-4">
-        <h2 className="text-center text-2xl font-semibold">{patientInfo.name}</h2>
+        <h2 className="text-center text-2xl font-semibold text-sky-700">
+          {patientInfo.name}
+        </h2>
         <p className="text-center text-gray-500">
           Status: {patientInfo.status} | Age: {patientInfo.age} | Blood Type:{" "}
           {patientInfo.bloodType}
         </p>
         <div className="text-center mt-4">
-          <button
-            className="bg-blue-800 text-white py-2 px-4 rounded flex items-center justify-center"
-          >
+          <button className="bg-sky-800 hover:bg-sky-900 text-white py-2 px-4 rounded flex items-center justify-center">
             <Download size={16} /> <span className="ml-2">Download Reports</span>
           </button>
         </div>
       </div>
 
       {/* Medical History Records */}
-      <h3 className="mb-3 text-center text-xl font-semibold text-blue-800">
+      <h3 className="mb-3 text-center text-xl font-semibold text-sky-700">
         Medical History
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {records.map((record, index) => (
           <div className="bg-white shadow-md rounded-lg p-4 h-full" key={index}>
-            <h5 className="text-lg font-semibold text-blue-800">{record.title}</h5>
+            <h5 className="text-lg font-semibold text-sky-700">{record.title}</h5>
             <p className="text-gray-700">{record.description}</p>
             {record.date && <p className="text-gray-500">Date: {record.date}</p>}
             {record.status && (
@@ -87,4 +87,3 @@ const MedicalHistory = () => {
 };
 
 export default MedicalHistory;
-

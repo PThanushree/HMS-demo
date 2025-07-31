@@ -1,24 +1,38 @@
+
+
 import React, { useState } from 'react';
-import bgimage from '../assets/bgimage.jpg'; // make sure the path is correct
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import bgimage from '../assets/bgimage.jpg'; // Update the path if needed
 
 const Register = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password, role }),
-    });
+    try {
+      const response = await axios.post('http://localhost:8000/api/users/register', {
+        username,
+        email,
+        password,
+        role,
+      });
 
-    const data = await response.json();
-    setMessage(data.message || data.error);
+      if (response.status === 201) {
+         localStorage.setItem("user", JSON.stringify(response.data.user));
+        setMessage("Registration successful! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 2000);
+      } else {
+        setMessage(response.data.error || "Something went wrong");
+      }
+    } catch (error) {
+      setMessage(error.response?.data?.error || "Registration failed");
+    }
   };
 
   return (
@@ -41,6 +55,15 @@ const Register = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-3 rounded-md border bg-white/80"
+            required
+          />
+
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 rounded-md border bg-white/80"
             required
           />
@@ -75,7 +98,9 @@ const Register = () => {
           </button>
         </form>
 
-        {message && <p className="text-sm text-red-600 mt-4">{message}</p>}
+        {message && (
+          <p className="text-sm mt-4 text-center text-red-600">{message}</p>
+        )}
 
         <p className="mt-4 text-center text-gray-700">
           Already have an account?{' '}
@@ -89,4 +114,3 @@ const Register = () => {
 };
 
 export default Register;
-

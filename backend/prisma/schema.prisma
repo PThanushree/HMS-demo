@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  email String  @unique
+  username String  
+  password String
+  role     String
+  doctor   Doctor?
+  staff    Staff?
+  patient  Patient?
+
+}
+
+model Patient {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String  @unique @db.ObjectId
+  username String
+  email        String  @unique
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address      String?
+  profilePhoto String?
+  phone   String?
+  age   String?
+  appointments   Appointment[]
+}
+
+
+model Appointment {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  patientId          String   @db.ObjectId
+  fullName           String
+  email              String
+  address            String?
+  age                String?
+  bloodGroup        String?
+  specialization   String
+    reasonForConsultation String
+   doctorId          String    //@db.ObjectId
+  doctorName        String
+  pastMedicalHistory String?
+  preferredDate     String   // Store as "dd-mm-yyyy"
+  preferredTime     String   // Store as time, e.g. "10:00 AM"
+
+  patient          Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+
+model Doctor {
+  id             String               @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String               @unique @db.ObjectId
+  specialization String
+  qualifications String
+  availability   String
+  license        String
+  contactInfo    String
+  profilePhoto   String?
+  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attendances    DoctorAttendance[]
+  leaveRequests  DoctorLeaveRequest[]
+}
+
+model Staff {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String  @unique @db.ObjectId
+  position    String
+  department  String
+  contactInfo String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DoctorAttendance {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId  String @db.ObjectId
+  checkIn   DateTime?
+  checkOut  DateTime?
+  date      DateTime @default(now())
+  doctor    Doctor   @relation(fields: [doctorId], references: [userId], onDelete: Cascade)
+}
+
+model DoctorLeaveRequest {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId  String @db.ObjectId
+  leaveType String
+  startDate DateTime
+  endDate   DateTime
+  reason    String
+  status    String   @default("pending") // pending, approved, rejected
+  createdAt DateTime @default(now())
+  doctor    Doctor   @relation(fields: [doctorId], references: [userId], onDelete: Cascade)
+}
