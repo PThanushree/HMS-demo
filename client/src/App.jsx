@@ -1,27 +1,37 @@
+
 import React from "react";
 import "../src/index.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./Components/Landing.jsx";
+import Login from "./Components/Login.jsx";
+import Register from "./Components/Register.jsx";
+import PatientDashboard from "./pages/patient/patientDashBoard.jsx";
+import Appointments from "./pages/patient/VideoCall.jsx";
+import Billing from "./pages/patient/Billing.jsx";
+import History from "./pages/patient/MedicalHist.jsx";
+import Profile from "./pages/patient/Profile.jsx";
 
-//import Welcome from './Welcome';  Import the Welcome page
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import PatientRoutes from "./routes/PatientRoutes.jsx";
-
-//import NotFound from "./pages/PageNotFound";
+import MainLayout from "./layout/MainLayout.jsx"; // The layout with Navbar + Footer
 
 function App() {
   return (
-    <>
-      <div className="p-10 bg-blue-100 min-h-screen">
-        <h1 className="text-4xl text-red-500 font-bold">Tailwind Test</h1>
-      </div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/patient/*" element={<PatientRoutes />} />
-          {/* 404 - Page Not Found */}
-        </Routes>
-      </BrowserRouter>
-    </>
+    <Router>
+      <Routes>
+        {/* Public routes without Navbar/Footer */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Routes WITH Navbar/Footer (inside layout) */}
+        <Route path="/patient" element={<MainLayout />}>
+          <Route index element={<PatientDashboard />} />
+          <Route path="appointments" element={<Appointments />} />
+          <Route path="billing" element={<Billing />} />
+          <Route path="history" element={<History />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
