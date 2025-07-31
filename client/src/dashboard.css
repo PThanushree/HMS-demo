@@ -1,0 +1,483 @@
+:root {
+  --primary: #3a0ca3;
+  --primary-light: #4361ee;
+  --secondary: #7209b7;
+  --success: #4cc9f0;
+  --danger: #f72585;
+  --warning: #f8961e;
+  --info: #4895ef;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+  --border: #e9ecef;
+  --text: #2d3748;
+  --text-light: #718096;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --sidebar-width: 260px;
+  --header-height: 70px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* or 'auto', 'scroll' depending on what you want */
+}
+
+/* Custom Scrollbar*/
+ /* ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+} */
+
+/* Layout */
+.container {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  height:100vh;
+}
+.mainContainer{
+  width:100%;
+  margin: 0;
+}
+
+.columnAuto
+{
+  min-height:100vh;
+}
+/* Sidebar */
+.sidebar {
+  grid-row: 1 / 3;
+  background: linear-gradient(180deg, var(--dark) 0%, #16213e 100%);
+  color: white;
+  overflow-y: auto;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  position: relative;
+
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0.1) , transparent);
+}
+
+.logo {
+  padding: 24px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
+
+
+.logo span {
+  color: var(--primary-light);
+  background: linear-gradient(45deg, var(--primary-light), var(--success));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 2px;
+}
+
+.nav-menu {
+  padding: 7px 0;
+  /* Ensures nav items are stacked vertically */
+
+  display: flex;
+  flex-direction: column; /* Aligns items in a single column */
+  width: 100%;
+
+}
+
+/* .menu-heading {
+  padding: 16px 25px 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+} */
+
+.nav-item {
+  padding: 7px 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 4px solid transparent;
+  margin: 4px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/*Nav-menu css*/
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: var(--transition);
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-item:hover,  /*rgba(67, 97, 238, 0.2))*/
+.nav-item.active {
+  background-color:rgba(255, 255, 255, 0.07) ;
+  border-left-color: var(--primary-light);
+}
+ .nav-item.active {
+  background: linear-gradient(90deg, rgba(67, 97, 238, 0.2), transparent);
+  font-weight: 500;
+} 
+
+.nav-item i {
+  width: 24px;
+  margin-right: 2px;
+  font-size: 18px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.nav-item:hover i {
+  transform: translateY(-2px);
+} 
+
+.video-icon {
+  width: 23px;  
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+.bill-icon {
+  width: 23px; 
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+.pres-icon{
+  width: 23px; 
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+
+}
+.profile-icon{
+  width: 23px;  
+  height: 23px;
+  padding:2px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+/* Header */
+.header {
+  grid-column: 4;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: var(--shadow-sm);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  margin-left:auto;
+}
+
+.user-profile:hover {
+  background-color: rgba(97, 132, 226, 0.05);
+}
+
+.profile-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(14, 39, 82, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  margin-right: 12px;
+  box-shadow: 0 3px 8px rgba(114, 131, 241, 0.05);
+  font-size: 16px;
+}
+
+.profile-container {
+  width: 400px; /* Fixed width */
+  max-width: 100%;
+  min-height: 550px; /* Ensures enough space for the button */
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-img-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.patient-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  object-fit: cover;
+}
+
+.edit-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background-color: rgba(14, 39, 82, 1);
+  color: white;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: rgba(20, 50, 100, 1);
+}
+
+
+
+.profile-container {
+  width: 400px; /* Fixed width */
+  max-width: 100%;
+  min-height: 550px; /* Ensures enough space */
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-info {
+  width: 100%;
+  flex-grow: 1;
+  min-height: 100px; /* Prevents collapsing */
+  max-height: fit-content;
+  overflow: auto; /* Enables scrolling inside */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name, .user-dob, .user-phno, .user-addr, .user-id, .user-bloodgrp , .user-age {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.patient-detail
+{
+  width:100%;
+  margin:0;
+  paddding:0;
+}
+.main-content
+{
+  width:100%;
+}
+
+.patient-content {
+  display:flex;
+  align-items: center; 
+  gap: 20px; 
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100vw; 
+  margin-left: 0;
+  margin-right: 0;
+ margin-bottom:35px;
+ 
+}
+
+
+.patient-img {
+  width: 100%; /* Keep it responsive */
+  max-width: 200px; /* Prevent it from growing too large */
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  border-radius: 50%; /* Optional: makes it circular */
+  background: rgb(181, 164, 164); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  font-size: 14px;
+  color: #333;
+}
+
+.page-title {
+  margin-bottom: 24px;
+  margin-top:20px;
+  margin-left:5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+  
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
+
+.sidebar {
+  height: 100vh; 
+  overflow-y: auto; 
+  width: 250px; 
+}
+
+
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.video-icon, .bill-icon {
+  width: 20px; 
+  height: auto;
+}
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+.Hsptl-logo
+{
+  top: 0;
+  left: 0;
+  padding: 16px;
+  
+}
+
+
+
+
