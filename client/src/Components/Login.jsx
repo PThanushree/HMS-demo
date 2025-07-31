@@ -1,43 +1,67 @@
 import React, { useState } from 'react';
-import bgimage from '../assets/bgimage.jpg'; // correct image import
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import bgimage from '../assets/bgimage.jpg';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, role }),
+ const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post("http://localhost:8000/api/users/login", {
+      email,
+      password,
+      role,
     });
-    const data = await response.json();
-    setMessage(data.message || data.error);
-  };
+
+    const { token, msg, user } = response.data;
+
+    if (!token || !user) {
+      throw new Error("Invalid response from server.");
+    }
+
+    // Save token and user info in localStorage
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    setMessage(msg);
+
+    // Navigate to respective dashboard
+    navigate(role === "patient" ? "/patient" : `/${role}`);
+  } catch (err) {
+    console.error("Login error:", err);
+    const errorMsg = err.response?.data?.error || err.message || "Login failed";
+    setMessage(errorMsg);
+  }
+};
 
   return (
     <div
       className="min-h-screen w-full bg-cover bg-center relative flex items-center justify-center"
       style={{ backgroundImage: `url(${bgimage})` }}
     >
-      {/* Background Blur Overlay */}
+      {/* Blur Overlay */}
       <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
 
-      {/* Login Card */}
+      {/* Login Form */}
       <div className="relative z-10 w-[90%] max-w-md rounded-2xl shadow-xl p-8 bg-white/70 backdrop-blur-lg">
         <h2 className="text-3xl font-bold text-center text-sky-800 mb-6">
-          Patient Login
+          Login
         </h2>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 rounded-md border bg-white/80"
             required
           />
