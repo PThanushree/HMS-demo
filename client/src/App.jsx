@@ -1,6 +1,5 @@
-
 import React from "react";
-import "../src/index.css"
+import "../src/index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./Components/Landing.jsx";
 import Login from "./Components/Login.jsx";
@@ -10,6 +9,7 @@ import Appointments from "./pages/patient/VideoCall.jsx";
 import Billing from "./pages/patient/Billing.jsx";
 import History from "./pages/patient/MedicalHist.jsx";
 import Profile from "./pages/patient/Profile.jsx";
+import DoctorsSection from "./Components/DoctorsProfile.jsx";
 
 import MainLayout from "./layout/MainLayout.jsx"; // The layout with Navbar + Footer
 
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         {/* Public routes without Navbar/Footer */}
         <Route path="/" element={<Landing />} />
+        <Route path="/DoctorsSection" element={<DoctorsSection />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
